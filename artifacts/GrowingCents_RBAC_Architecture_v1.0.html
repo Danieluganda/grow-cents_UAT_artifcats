@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>GrowingCents_RBAC_Architecture_v1.0.md | Growing Cents UAT</title>
+    <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
+    <style>
+        :root {
+            --brand-green: #13352B;
+            --brand-gold: #C19B3B;
+            --bg-dark: #0a0f0d;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #e0e0e0;
+        }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            margin: 0; padding: 0; 
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+        .dashboard-body { padding: 40px; }
+        .hero-section { text-align: center; margin-bottom: 60px; }
+        .brand-logo { 
+            font-family: 'Marcellus', serif; 
+            font-size: 1.5rem; color: var(--brand-gold);
+            letter-spacing: 2px;
+        }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
+        
+        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
+        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px; max-width: 1200px; margin: 0 auto;
+        }
+        .artifact-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: flex; gap: 15px; align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        .artifact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .card-icon { font-size: 2rem; }
+        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
+        .card-info p { margin: 5px 0; font-size: 0.85rem; }
+        
+        .status-pill {
+            display: inline-block;
+            background: rgba(193, 155, 59, 0.2);
+            color: var(--brand-gold);
+            padding: 2px 10px; border-radius: 10px;
+            font-size: 0.7rem; font-weight: 600;
+            margin-top: 10px; border: 1px solid var(--brand-gold);
+        }
+
+        /* Artifact Page Styles */
+        .glass-container {
+            max-width: 900px; margin: 40px auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+
+        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
+        .content-area h3 { color: #fff; opacity: 0.9; }
+        
+        .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
+        table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
+        
+        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
+        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
+
+        footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
+        
+        .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
+        .doc-link:hover { border-bottom-style: solid; }
+        </style>
+</head>
+<body>
+    <div class='glass-container'>
+        <nav class='top-nav'>
+            <a href='../index.html' class='back-link'>← Dashboard</a>
+            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
+        </nav>
+        <main class='content-area'>
+            <h1>Growing Cents: RBAC Architecture v1.0</h1><br />
+<br />
+This document outlines the 6-layer Role-Based Access Control (RBAC) architecture governing the Growing Cents ecosystem.<br />
+<br />
+<h2>1. Governance Hierachy</h2><br />
+<br />
+<div class="table-wrapper"><table><tr><th>Layer</th><th>Role</th><th>Authority Level</th><th>Primary Responsibility</th></tr></table></div><br />
+<div class="table-wrapper"><table><tr><th><strong>L1</strong></th><th><strong>Super Admin</strong></th><th>High Command</th><th>System-wide sovereignty, security config, global analytics</th></tr><tr><td><strong>L2</strong></td><td><strong>Admin Assistant</strong></td><td>Support Node</td><td>Operational support, user approvals, content management</td></tr><tr><td><strong>L3</strong></td><td><strong>Regional Manager</strong></td><td>Governance Node</td><td>Multi-club oversight, performance trends, compliance</td></tr><tr><td><strong>L4</strong></td><td><strong>Club President</strong></td><td>Club Command</td><td>Institutional leadership, strategic assessment oversight</td></tr><tr><td><strong>L5</strong></td><td><strong>Club Secretary</strong></td><td>Operational Node</td><td>Daily logistics, assessment data entry, member sync</td></tr><tr><td><strong>L6</strong></td><td><strong>Club Member</strong></td><td>Strategic Asset</td><td>Individual contribution, viewing personal/club roadmaps</td></tr></table></div><br />
+<h2>2. Permission Matrix (Core Modules)</h2><br />
+<br />
+<div class="table-wrapper"><table><tr><th>Module</th><th>L1</th><th>L2</th><th>L3</th><th>L4</th><th>L5</th><th>L6</th></tr></table></div><br />
+<div class="table-wrapper"><table><tr><th><strong>Global Settings</strong></th><th>FULL</th><th>VIEW</th><th>VIEW</th><th>NONE</th><th>NONE</th><th>NONE</th></tr><tr><td><strong>User Approvals</strong></td><td>FULL</td><td>FULL</td><td>NONE</td><td>NONE</td><td>NONE</td><td>NONE</td></tr><tr><td><strong>Club Management</strong></td><td>FULL</td><td>EDIT</td><td>VIEW</td><td>NONE</td><td>NONE</td><td>NONE</td></tr><tr><td><strong>Assessments</strong></td><td>VIEW</td><td>VIEW</td><td>VIEW</td><td>FULL</td><td>EDIT</td><td>VIEW</td></tr><tr><td><strong>Audit Trails</strong></td><td>FULL</td><td>VIEW</td><td>NONE</td><td>NONE</td><td>NONE</td><td>NONE</td></tr></table></div><br />
+<hr><br />
+<em>Growing Cents Security Protocol</em><br />
+
+        </main>
+        <footer>
+            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
+        </footer>
+    </div>
+</body>
+</html>

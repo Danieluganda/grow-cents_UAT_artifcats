@@ -1,0 +1,125 @@
+
+        <html>
+        <head>
+            <style>
+                body { font-family: 'DejaVu Sans', sans-serif; line-height: 1.6; color: #333; padding: 40px; }
+                h1 { color: #13352B; border-bottom: 2px solid #C19B3B; padding-bottom: 10px; }
+                h2 { color: #13352B; margin-top: 30px; }
+                pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+                code { font-family: 'Courier New', monospace; background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+                table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+                th { background-color: #f8f8f8; }
+                .brand-gold { color: #C19B3B; }
+            </style>
+        </head>
+        <body>
+            <h1>Growing Cents: Technical Sequence Diagrams</h1><br />
+<br />
+This document outlines the core operational flows within the Growing Cents ecosystem, mapping interactions between the <strong>High Command (Admin)</strong>, <strong>Institutional Nodes (Clubs)</strong>, and <strong>Strategic Intelligence (Assessment Engine)</strong>.<br />
+<br />
+<h2>1. Authentication & Security Protocol (Login)</h2><br />
+<br />
+<pre><code>mermaid<br />
+sequenceDiagram<br />
+    participant User<br />
+    participant AuthController<br />
+    participant 2FAService<br />
+    participant AuditLog<br />
+    participant Dashboard<br />
+<br />
+    User->>AuthController: Submit Credentials (email/pass)<br />
+    AuthController->>AuthController: Validate Credentials<br />
+    alt Credentials Valid<br />
+        AuthController->>2FAService: Trigger OTP Token<br />
+        2FAService-->>User: Dispatch SMS/Email Code<br />
+        User->>AuthController: Submit Verification Code<br />
+        AuthController->>2FAService: Verify Token<br />
+        alt Token Valid<br />
+            AuthController->>AuditLog: Store 'login_success'<br />
+            AuthController->>Dashboard: Redirect to Console<br />
+            Dashboard-->>User: Render Dashboard<br />
+        else Token Invalid<br />
+            AuthController->>AuditLog: Store '2fa_failure'<br />
+            AuthController-->>User: Return Error (422)<br />
+        end<br />
+    else Credentials Invalid<br />
+        AuthController-->>User: Return Error (401)<br />
+    end<br />
+</code></pre><br />
+<br />
+<h2>2. Institutional Audit Workflow (Assessment Submit)</h2><br />
+<br />
+<pre><code>mermaid<br />
+sequenceDiagram<br />
+    participant Club Admin<br />
+    participant AssessmentController<br />
+    participant MaturityEngine<br />
+    participant Database<br />
+    participant IntelligenceHub<br />
+<br />
+    Club Admin->>AssessmentController: Initialize Audit (GET /create)<br />
+    AssessmentController-->>Club Admin: Render Diagnostic Framework<br />
+    Club Admin->>AssessmentController: Submit Responses (POST /store)<br />
+    AssessmentController->>MaturityEngine: Process Raw Data<br />
+    Maturity Engine->>Maturity Engine: Calculate Section Scores<br />
+    Maturity Engine->>Maturity Engine: Derive Global Maturity Score (%)<br />
+    AssessmentController->>Database: Persist 'assessment_record' (status: pending)<br />
+    AssessmentController->>IntelligenceHub: Generate Strategic Recommendations<br />
+    IntelligenceHub-->>AssessmentController: Return Optimization Protocol<br />
+    AssessmentController-->>Club Admin: Redirect to Success Roadmap (200 OK)<br />
+</code></pre><br />
+<br />
+<h2>3. Strategic Advisory Generation (Report & PDF)</h2><br />
+<br />
+<pre><code>mermaid<br />
+sequenceDiagram<br />
+    participant Requester<br />
+    participant AssessmentController<br />
+    participant PdfEngine<br />
+    participant Storage<br />
+    participant CDN<br />
+<br />
+    Requester->>AssessmentController: Request Export (GET /export)<br />
+    AssessmentController->>AssessmentController: Verify Permissions<br />
+    AssessmentController->>AssessmentController: Fetch Assessment + Recommendations<br />
+    AssessmentController->>PdfEngine: Inject Data into Template<br />
+    PdfEngine->>PdfEngine: Render 'Elite' PDF Layout<br />
+    PdfEngine->>Storage: Temporarily Cache Asset<br />
+    AssessmentController->>CDN: stream_file()<br />
+    CDN-->>Requester: Download File (application/pdf)<br />
+</code></pre><br />
+<br />
+<h2>4. Club Institutional Onboarding (Registration)</h2><br />
+<br />
+<pre><code>mermaid<br />
+sequenceDiagram<br />
+    participant User<br />
+    participant ClubController<br />
+    participant Database<br />
+<br />
+    User->>ClubController: Register Club (POST /register)<br />
+    ClubController->>ClubController: Validate Institution Data<br />
+    ClubController->>Database: Create Club Record<br />
+    ClubController->>Database: Assign User as L4 (President)<br />
+    ClubController-->>User: Redirect to Onboarding Wizard<br />
+</code></pre><br />
+<br />
+<h2>5. Multi-Club Governance Protocol</h2><br />
+<br />
+<pre><code>mermaid<br />
+sequenceDiagram<br />
+    participant Admin<br />
+    participant RegionalController<br />
+    participant Aggregator<br />
+<br />
+    Admin->>RegionalController: Select Region<br />
+    RegionalController->>Aggregator: Fetch Multi-Club Metrics<br />
+    Aggregator->>Database: Query 'maturity_levels' by Region<br />
+    Aggregator-->>RegionalController: Return Aggregated Yield<br />
+    RegionalController-->>Admin: Render Global Cockpit<br />
+</code></pre><br />
+
+        </body>
+        </html>
+        

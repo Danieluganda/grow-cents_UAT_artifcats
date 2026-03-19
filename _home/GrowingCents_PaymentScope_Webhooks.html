@@ -1,0 +1,76 @@
+
+        <html>
+        <head>
+            <style>
+                body { font-family: 'DejaVu Sans', sans-serif; line-height: 1.6; color: #333; padding: 40px; }
+                h1 { color: #13352B; border-bottom: 2px solid #C19B3B; padding-bottom: 10px; }
+                h2 { color: #13352B; margin-top: 30px; }
+                pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+                code { font-family: 'Courier New', monospace; background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+                table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+                th { background-color: #f8f8f8; }
+                .brand-gold { color: #C19B3B; }
+            </style>
+        </head>
+        <body>
+            <h1>Growing Cents: Payment Scope & Webhooks</h1><br />
+<br />
+Strategic blueprint for mock-payment integration and webhook handling payloads.<br />
+<br />
+<h2>Subscription Tiers (Mock Scope)</h2><br />
+<br />
+<table><tr><th>Tier</th><th>Capabilities</th><th>Monthly Yield (USD)</th></tr></table><br />
+<table><tr><th><strong>Basic Institutional</strong></th><th>Single-node audit, basic roadmap</th><th>$49.00</th></tr><tr><td><strong>Elite Financial</strong></td><td>Multi-node, Advanced Strategic AI, PDF Exports</td><td>$149.00</td></tr><tr><td><strong>Global Command</strong></td><td>Full API access, Webhooks, Multi-region governance</td><td>$299.00</td></tr></table><br />
+<h2>Webhook Protocol: `subscription_active`</h2><br />
+<br />
+<strong>Payload Schema:</strong><br />
+<br />
+<pre><code>json<br />
+{<br />
+  "event": "subscription.activated",<br />
+  "data": {<br />
+    "subscription_id": "SUB-7821-GC",<br />
+    "club_id": 412,<br />
+    "plan_tier": "Elite",<br />
+    "expires_at": "2027-03-17",<br />
+    "transaction_ref": "TXN_MOCK_99827"<br />
+  },<br />
+  "signature": "SHA256_HASH_REDACTED"<br />
+}<br />
+</code></pre><br />
+<br />
+<h2>Webhook Protocol: `subscription_renewed`</h2><br />
+<br />
+<strong>Payload Schema:</strong><br />
+<pre><code>json<br />
+{<br />
+  "event": "subscription.renewed",<br />
+  "data": {<br />
+    "subscription_id": "SUB-7821-GC",<br />
+    "new_expiry": "2028-03-17",<br />
+    "amount_yielded": 14900<br />
+  }<br />
+}<br />
+</code></pre><br />
+<br />
+<h2>Internal Refund Logic</h2><br />
+<br />
+If a club requests a strategic retreat (refun), the following protocol is invoked:<br />
+1. <strong>Mark Subscription</strong>: `status = 'refunding'`<br />
+2. <strong>Revoke Elite Access</strong>: Downgrade logic at middleware layer.<br />
+3. <strong>Verify Yield Correction</strong>: Audit log entry for financial rollback.<br />
+<br />
+<h2>Handling Logic</h2><br />
+<br />
+1. <strong>Validate Signature</strong>: Ensure payload originates from the verified yield stream.<br />
+2. <strong>Check SubscriptionID</strong>: Prevent double-entry in the ledger.<br />
+3. <strong>Update Institutional Status</strong>: Reactivate club features immediately.<br />
+4. <strong>Log to Audit Trail</strong>: Store yield success event.<br />
+<br />
+<hr><br />
+<em>Growing Cents Financial Integration Blueprint</em><br />
+
+        </body>
+        </html>
+        

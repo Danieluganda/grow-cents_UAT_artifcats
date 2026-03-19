@@ -1,0 +1,35 @@
+
+        <html>
+        <head>
+            <style>
+                body { font-family: 'DejaVu Sans', sans-serif; line-height: 1.6; color: #333; padding: 40px; }
+                h1 { color: #13352B; border-bottom: 2px solid #C19B3B; padding-bottom: 10px; }
+                h2 { color: #13352B; margin-top: 30px; }
+                pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+                code { font-family: 'Courier New', monospace; background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+                table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+                th { background-color: #f8f8f8; }
+                .brand-gold { color: #C19B3B; }
+            </style>
+        </head>
+        <body>
+            <h1>Growing Cents: Git Branching Strategy v1.0</h1><br />
+<br />
+Protocol for managing institutional code nodes across staging and production environments.<br />
+<br />
+<h2>1. Branch Hierarchy</h2><br />
+<br />
+<table><tr><th>Branch</th><th>Node Type</th><th>Purpose</th></tr></table><br />
+<table><tr><th>`main`</th><th>Production</th><th>Strategic baseline; High Command stable code.</th></tr><tr><td>`staging`</td><td>Staging</td><td>Institutional verification; UAT environment.</td></tr><tr><td>`uat/{feature}`</td><td>Feature</td><td>Tactical development; Individual component audits.</td></tr></table><br />
+<h2>2. Fusion Workflow (Merging)</h2><br />
+<br />
+1. <strong>tactical -> staging</strong>: Only after unit test verification.<br />
+2. <strong>staging -> main</strong>: Only after UAT sign-off from Moses/High Command.<br />
+<br />
+<hr><br />
+<em>Growing Cents Tactical Version Control</em><br />
+
+        </body>
+        </html>
+        
