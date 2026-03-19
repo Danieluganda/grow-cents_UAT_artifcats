@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_RBAC_Architecture_v1.0.md | Growing Cents UAT</title>
+    <title>RBAC Architecture v1.0 | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,56 +35,146 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: RBAC Architecture v1.0</h1><br />
-<br />
-This document outlines the 6-layer Role-Based Access Control (RBAC) architecture governing the Growing Cents ecosystem.<br />
-<br />
-<h2>1. Governance Hierachy</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Layer</th><th>Role</th><th>Authority Level</th><th>Primary Responsibility</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>L1</strong></th><th><strong>Super Admin</strong></th><th>High Command</th><th>System-wide sovereignty, security config, global analytics</th></tr><tr><td><strong>L2</strong></td><td><strong>Admin Assistant</strong></td><td>Support Node</td><td>Operational support, user approvals, content management</td></tr><tr><td><strong>L3</strong></td><td><strong>Regional Manager</strong></td><td>Governance Node</td><td>Multi-club oversight, performance trends, compliance</td></tr><tr><td><strong>L4</strong></td><td><strong>Club President</strong></td><td>Club Command</td><td>Institutional leadership, strategic assessment oversight</td></tr><tr><td><strong>L5</strong></td><td><strong>Club Secretary</strong></td><td>Operational Node</td><td>Daily logistics, assessment data entry, member sync</td></tr><tr><td><strong>L6</strong></td><td><strong>Club Member</strong></td><td>Strategic Asset</td><td>Individual contribution, viewing personal/club roadmaps</td></tr></table></div><br />
-<h2>2. Permission Matrix (Core Modules)</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Module</th><th>L1</th><th>L2</th><th>L3</th><th>L4</th><th>L5</th><th>L6</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>Global Settings</strong></th><th>FULL</th><th>VIEW</th><th>VIEW</th><th>NONE</th><th>NONE</th><th>NONE</th></tr><tr><td><strong>User Approvals</strong></td><td>FULL</td><td>FULL</td><td>NONE</td><td>NONE</td><td>NONE</td><td>NONE</td></tr><tr><td><strong>Club Management</strong></td><td>FULL</td><td>EDIT</td><td>VIEW</td><td>NONE</td><td>NONE</td><td>NONE</td></tr><tr><td><strong>Assessments</strong></td><td>VIEW</td><td>VIEW</td><td>VIEW</td><td>FULL</td><td>EDIT</td><td>VIEW</td></tr><tr><td><strong>Audit Trails</strong></td><td>FULL</td><td>VIEW</td><td>NONE</td><td>NONE</td><td>NONE</td><td>NONE</td></tr></table></div><br />
-<hr><br />
-<em>Growing Cents Security Protocol</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>RBAC Architecture v1.0</h1>
+<p>This document covers the full 6-layer implementation of Role-Based Access Control in the Growing Cents platform — from database schema through to view rendering. Built on Laravel 11 and Spatie Laravel-Permission v6.</p>
+<p>For the conceptual 7-layer interaction model (Resource → Action → Permission → Role → User → Policy), see <a class='doc-link' href='GrowingCents_RBAC_Model_v2.0.html'>RBAC Model v2.0</a>.</p>
+
+<h2>Layer 1 — Database Schema</h2>
+<h3>Spatie Permission Tables (System-Level)</h3>
+<div class='table-wrapper'><table>
+<tr><th>Table</th><th>Purpose</th><th>Key Columns</th></tr>
+<tr><td><code>roles</code></td><td>Stores all role definitions</td><td>id, name, guard_name</td></tr>
+<tr><td><code>permissions</code></td><td>Stores all permission names</td><td>id, name, guard_name</td></tr>
+<tr><td><code>model_has_roles</code></td><td>Links users to roles (many-to-many)</td><td>role_id, model_type, model_id</td></tr>
+<tr><td><code>role_has_permissions</code></td><td>Links roles to permissions</td><td>permission_id, role_id</td></tr>
+<tr><td><code>model_has_permissions</code></td><td>Optional direct user→permission links</td><td>permission_id, model_type, model_id</td></tr>
+</table></div>
+<h3>Club-User Pivot Table (Club-Level)</h3>
+<div class='table-wrapper'><table>
+<tr><th>Column</th><th>Type</th><th>Values</th></tr>
+<tr><td><code>user_id</code></td><td>FK → users</td><td>—</td></tr>
+<tr><td><code>club_id</code></td><td>FK → clubs</td><td>—</td></tr>
+<tr><td><code>role</code></td><td>varchar</td><td>'admin' or 'member'</td></tr>
+</table></div>
+
+<h2>Layer 2 — Defined Roles &amp; Permissions</h2>
+<div class='table-wrapper'><table>
+<tr><th>Role</th><th>submit_assessment</th><th>view_reports</th><th>export_data</th><th>manage_users</th><th>access_all_clubs</th><th>view_audit_logs</th></tr>
+<tr><td><span class='badge badge-red'>Super Admin</span></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><span class='badge badge-amber'>Club Admin</span></td><td>✅</td><td>✅ (if paid)</td><td>✅ (own)</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><span class='badge badge-green'>Club Member</span></td><td>❌</td><td>✅ (if paid)</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><span class='badge badge-blue'>Auditor</span></td><td>❌</td><td>✅</td><td>✅ (if permitted)</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><span class='badge badge-purple'>Custom Role</span></td><td>Optional</td><td>Optional</td><td>Optional</td><td>Optional</td><td>Optional</td><td>Optional</td></tr>
+</table></div>
+
+<h2>Layer 3 — Authentication &amp; 2FA Flow</h2>
+<p>Every session starts here. 8 steps from credential validation to role-based routing:</p>
+<ol>
+  <li>User submits email + password → <code>AuthenticatedSessionController</code></li>
+  <li>Credentials validated against bcrypt hash in users table</li>
+  <li>OTP generated → stored as <code>otp_code</code>, expires <code>otp_expires_at = now()+10min</code></li>
+  <li>OTP emailed via <code>TwoFactorCode</code> mailable</li>
+  <li>User submits OTP → <code>TwoFactorController@store()</code> validates: code matches AND not expired</li>
+  <li>OTP cleared: <code>otp_code = null, otp_expires_at = null</code> — cannot be reused</li>
+  <li>Session flag set: <code>session->put('2fa_verified', true)</code></li>
+  <li>Routed by role: Super Admin → admin.dashboard | multi-club → clubs.select | single club → clubs.dashboard/{id}</li>
+</ol>
+
+<h2>Layer 4 — Middleware Enforcement</h2>
+<div class='table-wrapper'><table>
+<tr><th>Middleware</th><th>What It Checks</th><th>Applied To</th></tr>
+<tr><td><code>auth</code></td><td>User is logged in, session is valid</td><td>All club routes, admin routes, 2FA routes</td></tr>
+<tr><td><code>2fa</code></td><td><code>session('2fa_verified') === true</code></td><td>Profile routes (should be on all club routes — known gap KI-012)</td></tr>
+<tr><td><code>role:Super Admin</code></td><td>User has Super Admin Spatie role</td><td>All <code>/admin/*</code> routes</td></tr>
+<tr><td><code>permission:manage_users</code></td><td>User has manage_users permission</td><td>All <code>/admin/user-management/*</code> routes</td></tr>
+<tr><td><code>permission:view_reports</code></td><td>User has view_reports permission</td><td><code>AssessmentController@index, @show</code></td></tr>
+<tr><td><code>permission:export_data</code></td><td>User has export_data permission</td><td><code>AssessmentController@downloadPdf, @export</code></td></tr>
+</table></div>
+<h3>Controller-Level Declaration (HasMiddleware)</h3>
+<pre><code>class AssessmentController extends Controller implements HasMiddleware {
+    public static function middleware(): array {
+        return [
+            new Middleware('permission:view_reports',  only: ['index', 'show']),
+            new Middleware('permission:export_data',   only: ['downloadPdf', 'export']),
+            // NOTE: submit_assessment middleware was removed — being restored (KI-001)
+        ];
+    }
+}</code></pre>
+
+<h2>Layer 5 — Controller-Level Checks</h2>
+<h3>Club-Scoped Data Isolation</h3>
+<pre><code>// Prevents horizontal access — Club A cannot read Club B's data
+$club       = Club::findOrFail($clubId);
+$assessment = Assessment::where('club_id', $clubId)->findOrFail($id);</code></pre>
+<h3>Super Admin Bypass</h3>
+<pre><code>$query = $user->hasRole('Super Admin')
+    ? Assessment::with('club')              // sees ALL clubs
+    : $club->assessments()->with('club');   // sees own club only</code></pre>
+
+<h2>Layer 6 — View-Level Conditional Rendering</h2>
+<pre><code>{{-- Submit button — Club Admin and Super Admin only --}}
+@can('submit_assessment')
+    &lt;button type="submit"&gt;Submit Assessment&lt;/button&gt;
+@endcan
+
+{{-- Admin panel link — Super Admin only --}}
+@role('Super Admin')
+    &lt;a href="{{ route('admin.dashboard') }}"&gt;Admin Panel&lt;/a&gt;
+@endrole
+
+{{-- PDF download — export_data permission required --}}
+@can('export_data')
+    &lt;a href="{{ route('assessments.download', [$club, $assessment]) }}"&gt;Download PDF&lt;/a&gt;
+@endcan</code></pre>
+<div class='callout callout-info'>
+  <strong>ℹ️ Important:</strong> View-layer checks are a UX convenience — they hide buttons the user cannot use. The real security boundary is always Layer 4 (middleware) and Layer 5 (controller). A user bypassing the UI and hitting the endpoint directly is still blocked at the middleware level.
+</div>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

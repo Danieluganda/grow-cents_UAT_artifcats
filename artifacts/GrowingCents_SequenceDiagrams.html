@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_SequenceDiagrams.md | Growing Cents UAT</title>
+    <title>API Sequence Diagrams | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,142 +35,199 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: Technical Sequence Diagrams</h1><br />
-<br />
-This document outlines the core operational flows within the Growing Cents ecosystem, mapping interactions between the <strong>High Command (Admin)</strong>, <strong>Institutional Nodes (Clubs)</strong>, and <strong>Strategic Intelligence (Assessment Engine)</strong>.<br />
-<br />
-<h2>1. Authentication & Security Protocol (Login)</h2><br />
-<br />
-<pre><code>mermaid
-sequenceDiagram
-    participant User
-    participant AuthController
-    participant 2FAService
-    participant AuditLog
-    participant Dashboard
-
-    User-&gt;&gt;AuthController: Submit Credentials (email/pass)
-    AuthController-&gt;&gt;AuthController: Validate Credentials
-    alt Credentials Valid
-        AuthController-&gt;&gt;2FAService: Trigger OTP Token
-        2FAService--&gt;&gt;User: Dispatch SMS/Email Code
-        User-&gt;&gt;AuthController: Submit Verification Code
-        AuthController-&gt;&gt;2FAService: Verify Token
-        alt Token Valid
-            AuthController-&gt;&gt;AuditLog: Store &#039;login_success&#039;
-            AuthController-&gt;&gt;Dashboard: Redirect to Console
-            Dashboard--&gt;&gt;User: Render Dashboard
-        else Token Invalid
-            AuthController-&gt;&gt;AuditLog: Store &#039;2fa_failure&#039;
-            AuthController--&gt;&gt;User: Return Error (422)
-        end
-    else Credentials Invalid
-        AuthController--&gt;&gt;User: Return Error (401)
-    end</code></pre><br />
-<br />
-<h2>2. Institutional Audit Workflow (Assessment Submit)</h2><br />
-<br />
-<pre><code>mermaid
-sequenceDiagram
-    participant Club Admin
-    participant AssessmentController
-    participant MaturityEngine
-    participant Database
-    participant IntelligenceHub
-
-    Club Admin-&gt;&gt;AssessmentController: Initialize Audit (GET /create)
-    AssessmentController--&gt;&gt;Club Admin: Render Diagnostic Framework
-    Club Admin-&gt;&gt;AssessmentController: Submit Responses (POST /store)
-    AssessmentController-&gt;&gt;MaturityEngine: Process Raw Data
-    Maturity Engine-&gt;&gt;Maturity Engine: Calculate Section Scores
-    Maturity Engine-&gt;&gt;Maturity Engine: Derive Global Maturity Score (%)
-    AssessmentController-&gt;&gt;Database: Persist &#039;assessment_record&#039; (status: pending)
-    AssessmentController-&gt;&gt;IntelligenceHub: Generate Strategic Recommendations
-    IntelligenceHub--&gt;&gt;AssessmentController: Return Optimization Protocol
-    AssessmentController--&gt;&gt;Club Admin: Redirect to Success Roadmap (200 OK)</code></pre><br />
-<br />
-<h2>3. Strategic Advisory Generation (Report & PDF)</h2><br />
-<br />
-<pre><code>mermaid
-sequenceDiagram
-    participant Requester
-    participant AssessmentController
-    participant PdfEngine
-    participant Storage
-    participant CDN
-
-    Requester-&gt;&gt;AssessmentController: Request Export (GET /export)
-    AssessmentController-&gt;&gt;AssessmentController: Verify Permissions
-    AssessmentController-&gt;&gt;AssessmentController: Fetch Assessment + Recommendations
-    AssessmentController-&gt;&gt;PdfEngine: Inject Data into Template
-    PdfEngine-&gt;&gt;PdfEngine: Render &#039;Elite&#039; PDF Layout
-    PdfEngine-&gt;&gt;Storage: Temporarily Cache Asset
-    AssessmentController-&gt;&gt;CDN: stream_file()
-    CDN--&gt;&gt;Requester: Download File (application/pdf)</code></pre><br />
-<br />
-<h2>4. Club Institutional Onboarding (Registration)</h2><br />
-<br />
-<pre><code>mermaid
-sequenceDiagram
-    participant User
-    participant ClubController
-    participant Database
-
-    User-&gt;&gt;ClubController: Register Club (POST /register)
-    ClubController-&gt;&gt;ClubController: Validate Institution Data
-    ClubController-&gt;&gt;Database: Create Club Record
-    ClubController-&gt;&gt;Database: Assign User as L4 (President)
-    ClubController--&gt;&gt;User: Redirect to Onboarding Wizard</code></pre><br />
-<br />
-<h2>5. Multi-Club Governance Protocol</h2><br />
-<br />
-<pre><code>mermaid
-sequenceDiagram
-    participant Admin
-    participant RegionalController
-    participant Aggregator
-
-    Admin-&gt;&gt;RegionalController: Select Region
-    RegionalController-&gt;&gt;Aggregator: Fetch Multi-Club Metrics
-    Aggregator-&gt;&gt;Database: Query &#039;maturity_levels&#039; by Region
-    Aggregator--&gt;&gt;RegionalController: Return Aggregated Yield
-    RegionalController--&gt;&gt;Admin: Render Global Cockpit</code></pre><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>API Sequence Diagrams</h1>
+<p>This document covers the 5 core interaction flows in the Growing Cents platform — traced through each layer from browser request to database response. All actors, route names, controller methods, and response types reflect the actual codebase.</p>
+
+<h2>1. User Login + 2-Step Verification (2FA)</h2>
+<pre><code>Browser          Router           Middleware       Controller       Model/DB         Mail
+  |                |                |                |                |                |
+  |-- POST /login (email,pass) ---> |                |                |                |
+  |                |-- throttle:login check -------> |                |                |
+  |                |                |-- AuthenticatedSessionController@store           |
+  |                |                |                |-- User::where('email') -------> |
+  |                |                |                | <------------- User record ----- |
+  |                |                |                |-- Hash::check(pass, hash)       |
+  |                |                |                |-- Generate OTP rand(100000,9..) |
+  |                |                |                |-- user->update(otp_code, expires_at)
+  |                |                |                |-- Mail::send(TwoFactorCode) --> |
+  |                |                |                |                | <-- sent OK --- |
+  | <--- redirect GET /verify-2fa --|                |                |                |
+  |                |                |                |                |                |
+  |-- POST /verify-2fa (code) ----> |                |                |                |
+  |                |-- auth middleware ------------> |                |                |
+  |                |                |-- TwoFactorController@store     |                |
+  |                |                |                |-- check code===otp_code AND not expired
+  |                |                |                |-- user->update(otp_code=null, last_login_at=now())
+  |                |                |                |-- session->put('2fa_verified', true)
+  |                |                |                |-- AuditLog::log('login_success')
+  |                |                |                |-- hasRole('Super Admin')? -> admin.dashboard
+  |                |                |                |-- clubs()->count()==1? -> clubs.dashboard/{id}
+  |                |                |                |-- clubs()->count()>1? -> clubs.select
+  | <--- redirect to destination ---|                |                |                |
+
+ERROR PATHS:
+  Invalid password -> 422 {"email": ["These credentials do not match our records."]}
+  Wrong OTP        -> 422 {"code": ["The verification code is invalid or has expired."]}
+  Expired OTP      -> 422 (otp_expires_at < now())
+  Too many resends -> 429 (throttle:3,1 on /verify-2fa/resend)</code></pre>
+
+<h2>2. Assessment Create, Autosave &amp; Submit</h2>
+<pre><code>Browser          Router           Middleware       Controller       Model/DB         Mail
+  |                |                |                |                |                |
+  |-- GET /clubs/{club}/assessments/create -------> |                |                |
+  |                |-- auth + 2fa middleware ------> |                |                |
+  |                |                |-- AssessmentController@create   |                |
+  |                |                |                |-- Club::findOrFail(clubId) ---> |
+  |                |                |                |-- Assessment::getAssessmentSchema() (JSON)
+  |                |                |                |-- find existing draft for club  |
+  | <--- render form (schema + draftResponses) ----> |                |                |
+  |                |                |                |                |                |
+  |-- POST /draft (AJAX every N sec) ------------> |                 |                |
+  |                |-- auth middleware ------------> |                |                |
+  |                |                |-- AssessmentController@saveDraft|                |
+  |                |                |                |-- Assessment::updateOrCreate(Draft)
+  | <--- JSON {success:true, draft_id:N} ---------- |                |                |
+  |                |                |                |                |                |
+  |-- POST /clubs/{club}/assessments (submit) ----> |                |                |
+  |                |-- auth middleware ------------> |                |                |
+  |                |-- permission:submit_assessment -> 403 if Club Member              |
+  |                |                |-- AssessmentController@store    |                |
+  |                |                |                |-- Club::findOrFail(clubId)      |
+  |                |                |                |-- parse KYC fields from responses
+  |                |                |                |-- club->update(KYC fields)      |
+  |                |                |                |-- generateReportData(responses, schema)
+  |                |                |                |-- assessment->update({status:Completed, maturity_score, report_data, grace_period_expires_at})
+  |                |                |                |-- AuditLog::log('assessment_submitted')
+  |                |                |                |-- Mail: AssessmentCompleted ---> |
+  | <--- redirect assessments.show (report) --------|                |                |
+
+ERROR PATHS:
+  Club Member submits -> 403 Forbidden (permission:submit_assessment missing)
+  Incomplete form    -> 422 validation errors
+  Club not found     -> 404</code></pre>
+
+<h2>3. Report View, PDF Download &amp; Email</h2>
+<pre><code>Browser          Router           Middleware       Controller       Model/DB
+  |                |                |                |                |
+  |-- GET /clubs/{club}/assessments/{id} ---------> |                |
+  |                |-- auth + permission:view_reports ------------> |
+  |                |                |-- AssessmentController@show     |
+  |                |                |                |-- Club::findOrFail(clubId)
+  |                |                |                |-- Assessment::where('club_id')->findOrFail(id)
+  |                |                |                |-- check subscription (currently inactive)
+  | <--- render report view (reportData JSON) ------|                |
+  |                |                |                |                |
+  |-- GET /clubs/{club}/assessments/{id}/download -> |                |
+  |                |-- permission:export_data ------> |                |
+  |                |                |-- AssessmentController@downloadPdf
+  |                |                |                |-- Pdf::loadView('assessments.pdf_report')
+  |                |                |                |-- DomPDF renders Blade to PDF binary
+  | <--- streamDownload(pdf, 'GC-Report.pdf') ------|                |
+  |                |                |                |                |
+  |-- POST /email {email, message} -> |              |                |
+  |                |-- auth + view_reports ---------->|                |
+  |                |                |-- AssessmentController@emailReport
+  |                |                |                |-- generate PDF -> temp path
+  |                |                |                |-- Mail::to(email)->send(AssessmentReport PDF)
+  |                |                |                |-- AuditLog::log('report_emailed')
+  | <--- JSON {success:true} -------|                |                |
+
+ERROR PATHS:
+  No view_reports permission -> 403
+  Wrong club in URL          -> 404 (club_id scoping)
+  PDF generation fails       -> 500 (logged to laravel.log)</code></pre>
+
+<h2>4. Club Registration &amp; Member Invite</h2>
+<pre><code>Browser          Router           Middleware       Controller       Model/DB         Spatie
+  |                |                |                |                |                |
+  |-- POST /clubs/register {name, email, location, currency, inception_date}          |
+  |                |-- auth middleware ------------> |                |                |
+  |                |                |-- ClubController@register       |                |
+  |                |                |                |-- validate (name req, email unique:clubs)
+  |                |                |                |-- Club::create(...)              |
+  |                |                |                |   boot(): unique_id = GC-2026-0001
+  |                |                |                |-- club->users()->syncWithoutDetaching([user_id => ['role'=>'admin']])
+  |                |                |                |-- user->assignRole('Club Admin') -> |
+  |                |                |                |-- AuditLog::log('club_registered') |
+  | <--- redirect clubs.dashboard/{club} ---------- |                |                |
+  |                |                |                |                |                |
+  |-- POST /clubs/{club}/members/invite {email, role, name}                           |
+  |                |-- auth middleware ------------> |                |                |
+  |                |                |-- ClubController@inviteMember   |                |
+  |                |                |                |-- User::firstOrCreate(['email'])  |
+  |                |                |                |-- club->users()->syncWithoutDetaching([user_id => ['role']])
+  |                |                |                |-- user->assignRole('Club Admin'|'Club Member')
+  |                |                |                |-- Mail: ClubInvitation (with temp password if new)
+  | <--- redirect clubs.members with success ------- |                |                |</code></pre>
+
+<h2>5. Multi-Club Login Routing</h2>
+<pre><code>After successful 2FA in TwoFactorController@store():
+
+user->hasRole('Super Admin')?
+  YES -> redirect admin.dashboard (bypasses all club routing)
+  NO  -> user->clubs()->count()
+
+  count == 0 -> redirect /dashboard (no club assigned)
+  count == 1 -> $club = user->clubs()->first()
+                redirect clubs.dashboard/{club->id}  [auto-direct, no selector]
+  count > 1  -> redirect clubs.select
+
+// clubs.select page:
+GET /clubs/select -> ClubController@select
+  $clubs = auth()->user()->clubs  [scoped to user's pivot records only]
+  render clubs/select view
+
+// User picks a club:
+GET /clubs/{club}/dashboard -> DashboardController@club
+  Club::findOrFail($clubId)  [validates user belongs to this club]
+  load club-scoped data
+  render club dashboard</code></pre>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

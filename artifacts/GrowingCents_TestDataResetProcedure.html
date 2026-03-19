@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_TestDataResetProcedure.md | Growing Cents UAT</title>
+    <title>Test Data Reset Procedure | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,80 +35,159 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: Test Data Reset Procedure</h1><br />
-<br />
-To maintain operational purity during staging, follow this protocol to reset all nodes to a verified baseline.<br />
-<br />
-<h2>Phase 1: Institutional Purge</h2><br />
-<br />
-1. <strong>Clear Assessments</strong>: Delete all records from `assessments` and `recommendations` tables.<br />
-2. <strong>Reset Clubs</strong>: Remove all non-baseline institutional entries.<br />
-3. <strong>Wipe Logs</strong>: Truncate the `audit_logs` table (preserve 'critical' tags if needed).<br />
-<br />
-<pre><code>bash
-&lt;h1&gt;Command Console Execution - Standard Reset&lt;/h1&gt;
-php artisan db:seed --class=BaselineResetSeeder
-
-&lt;h1&gt;Nuclear Reset (Full Wipe)&lt;/h1&gt;
-php artisan migrate:fresh --seed</code></pre><br />
-<br />
-<h3>Safety Check:</h3><br />
-Before execution, verify `APP_ENV` is NOT `production`.<br />
-<pre><code>bash
-php artisan env</code></pre><br />
-<br />
-<h2>Phase 2: User Synchronization</h2><br />
-<br />
-1. <strong>De-register Non-Admins</strong>: Clear the `users` table of all but the primary Command nodes.<br />
-2. <strong>Clear 2FA Tokens</strong>: Expire all pending verification tokens.<br />
-3. <strong>Reset Password History</strong>: Refresh salt and pepper configs if staging is compromised.<br />
-<br />
-<h2>Phase 3: Financial Baseline</h2><br />
-<br />
-1. <strong>Expire Subscriptions</strong>: Set all active test subscriptions to `expired`.<br />
-2. <strong>Clear Mock Webhooks</strong>: Flush the `webhook_events` cache.<br />
-<br />
-<hr><br />
-> [!WARNING]<br />
-> This procedure is IRREVERSIBLE. Ensure a High Command backup exists before execution.<br />
-<br />
-<em>Growing Cents Staging & Environment Control</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>Test Data Reset Procedure</h1>
+<p>Step-by-step procedure for resetting the Growing Cents staging environment between UAT test runs. This procedure restores all test accounts, clubs, and assessments to a known baseline state so Moses can repeat tests from a clean starting point.</p>
+
+<div class='callout callout-warn'>
+  <strong>⚠️ Critical:</strong> Always verify <code>APP_ENV</code> is <code>staging</code> — NEVER run these commands on the production server at <code>assessment.growing-cents.com</code>.
+</div>
+
+<h2>1. Verify Environment Before Reset</h2>
+<pre><code># SSH into the staging server
+ssh user@staging-server
+
+# Navigate to project root
+cd /var/www/growing-cents
+
+# Confirm you are on staging — must output 'staging'
+php artisan env
+
+# Confirm you are on the uat/staging branch
+git branch --show-current
+# Expected output: uat/staging</code></pre>
+
+<h2>2. Option A — Soft Reset (Recommended for Between Tests)</h2>
+<p>Wipes assessments, subscriptions, and audit logs. Keeps user accounts and clubs intact. Use this between individual test sections (e.g. after completing Section C, before starting Section D).</p>
+<pre><code># Run the UAT soft reset seeder
+php artisan db:seed --class=UATSoftResetSeeder
+
+# What this does:
+# 1. Truncates: assessments, assessment_responses, subscriptions, audit_logs
+# 2. Reseeds: 2 clubs (Kampala IC + Entebbe SC) with 5 assessments at varied maturity levels
+# 3. Resets: all user passwords to original UAT values
+# 4. Preserves: user accounts, roles, permissions, clubs</code></pre>
+
+<h2>3. Option B — Full Reset (Nuclear — Use With Caution)</h2>
+<p>Complete wipe and reseed. Destroys ALL data including users, roles, clubs. Use only at the start of a new UAT cycle or if the DB is in an unrecoverable state.</p>
+<pre><code># Full wipe and reseed
+php artisan migrate:fresh --seed
+
+# What this does:
+# 1. Drops ALL tables
+# 2. Re-runs ALL migrations
+# 3. Runs DatabaseSeeder (which calls UATSeeder)
+# 4. Re-creates: all roles, permissions, test accounts, clubs, assessments
+
+# After migrate:fresh, regenerate app key if needed
+php artisan key:generate
+
+# Clear all caches
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear</code></pre>
+
+<h2>4. Test Accounts After Reset</h2>
+<div class='table-wrapper'><table>
+<tr><th>Role</th><th>Email</th><th>Password</th><th>Status After Reset</th></tr>
+<tr><td>Super Admin</td><td><code>admin@uat.growing-cents.com</code></td><td><code>UATAdmin2026!</code></td><td>Active</td></tr>
+<tr><td>Club Admin</td><td><code>clubadmin@uat.growing-cents.com</code></td><td><code>UATClubAdmin2026!</code></td><td>Active</td></tr>
+<tr><td>Club Member</td><td><code>member@uat.growing-cents.com</code></td><td><code>UATMember2026!</code></td><td>Active</td></tr>
+<tr><td>Auditor</td><td><code>auditor@uat.growing-cents.com</code></td><td><code>UATAuditor2026!</code></td><td>Active</td></tr>
+<tr><td>Multi-Club</td><td><code>multiclub@uat.growing-cents.com</code></td><td><code>UATMulti2026!</code></td><td>Active — belongs to both clubs</td></tr>
+</table></div>
+
+<h2>5. Seed Data After Reset</h2>
+<div class='table-wrapper'><table>
+<tr><th>Club</th><th>Assessment</th><th>Status</th><th>Score</th><th>Purpose</th></tr>
+<tr><td>Kampala Investment Club</td><td>Assessment 1</td><td>Draft (50% complete)</td><td>N/A</td><td>Draft resume tests (C4)</td></tr>
+<tr><td>Kampala Investment Club</td><td>Assessment 2</td><td>Completed</td><td>~32% (FORMING)</td><td>Low score report tests</td></tr>
+<tr><td>Kampala Investment Club</td><td>Assessment 3</td><td>Completed</td><td>~78% (PERFORMING)</td><td>High score report tests</td></tr>
+<tr><td>Entebbe Savings Club</td><td>Assessment 4</td><td>Completed</td><td>~55% (NORMING)</td><td>Mid-range score + multi-club tests</td></tr>
+<tr><td>Entebbe Savings Club</td><td>Assessment 5</td><td>Completed</td><td>~91% (SOARING)</td><td>Top score + historical comparison</td></tr>
+</table></div>
+
+<h2>6. Clear OTP Tokens After Reset</h2>
+<p>If any test account is stuck on the 2FA screen (OTP expired but not cleared), run:</p>
+<pre><code># Clear all pending OTP tokens — forces fresh OTP on next login
+php artisan tinker
+>>> App/Models/User::query()->update(['otp_code' => null, 'otp_expires_at' => null]);
+>>> exit</code></pre>
+
+<h2>7. Reset Mailtrap Inbox</h2>
+<p>After a full reset, clear the Mailtrap inbox so Moses starts with a clean email log:</p>
+<ol>
+  <li>Log into <a class='doc-link' href='https://mailtrap.io' target='_blank'>mailtrap.io</a></li>
+  <li>Open the Growing Cents UAT inbox</li>
+  <li>Click <strong>Clear Inbox</strong> (top right button)</li>
+  <li>All previous OTP emails, invitation emails, and report emails are cleared</li>
+</ol>
+
+<h2>8. Verify Reset Was Successful</h2>
+<pre><code># Check assessment count
+php artisan tinker
+>>> App/Models/Assessment::count();  // Expected: 5
+>>> App/Models/User::count();        // Expected: 5 (UAT accounts)
+>>> App/Models/Club::count();        // Expected: 2
+>>> exit
+
+# Check roles seeded correctly
+php artisan permission:show</code></pre>
+
+<h2>9. If Something Goes Wrong</h2>
+<ul>
+  <li><strong>Migration fails</strong>: Check <code>storage/logs/laravel.log</code> for the error. Most common cause: duplicate column or table already exists. Run <code>php artisan migrate:status</code> to see which migrations ran.</li>
+  <li><strong>Seeder fails</strong>: Run seeder in isolation: <code>php artisan db:seed --class=UATSeeder</code>. Check for unique constraint violations — may mean the data already exists from a partial run.</li>
+  <li><strong>Permission errors</strong>: Re-run <code>php artisan permission:cache-reset</code> then try again.</li>
+  <li><strong>App key error after fresh</strong>: Run <code>php artisan key:generate</code></li>
+</ul>
+<p>Contact Daniel Nuwandinda (<code>daniel@restorcom.co.ug</code>) if the issue cannot be resolved independently.</p>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

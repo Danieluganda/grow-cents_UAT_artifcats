@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_Assessment_Logic_Matrix.md | Growing Cents UAT</title>
+    <title>Assessment Logic Matrix | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,91 +35,143 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: Assessment Logic Matrix v1.5</h1><br />
-<br />
-Technical specification for the maturity scoring algorithms and diagnostic logic nodes.<br />
-<br />
-<h2>1. Maturity Level Thresholds</h2><br />
-The system applies a strict percentage-based tiering model to transform raw diagnostic inputs into institutional maturity grades.<br />
-<br />
-<div class="table-wrapper"><table><tr><th>Threshold (%)</th><th>Maturity Level</th><th>Designation</th><th>Strategic Intent</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>91 - 100</strong></th><th>Level 5</th><th><strong>Soaring</strong></th><th>Institutional Optimization & Leadership</th></tr><tr><td><strong>76 - 90</strong></td><td>Level 4</td><td><strong>Strategic</strong></td><td>Process Excellence & Scaling</td></tr><tr><td><strong>51 - 75</strong></td><td>Level 3</td><td><strong>Stable</strong></td><td>Standardized Operations</td></tr><tr><td><strong>31 - 50</strong></td><td>Level 2</td><td><strong>Seeding</strong></td><td>Initial Governance & Discovery</td></tr><tr><td><strong>0 - 30</strong></td><td>Level 1</td><td><strong>Sowing</strong></td><td>Foundation Building & Risk Mitigation</td></tr></table></div><br />
-<hr><br />
-<br />
-<h2>2. Institutional Grouping Protocol</h2><br />
-The 9 diagnostic areas are clustered into 3 strategic pillars for high-level reporting.<br />
-<br />
-<h3>Pillar A: Strategic Governance & Records</h3><br />
-<em>Areas: 1 (Structure), 3 (Constitution), 6 (Governance)</em><br />
-<ul><li><strong>Logic Node:</strong> Focuses on legal stability and accountability structures.</li>
-<li><strong>Weighting:</strong> 35% of Overall Maturity.</li>
-
-<h3>Pillar B: Financial Performance & Internal Controls</h3>
-<em>Areas: 2 (Strategy), 4 (Banking), 7 (Stake)</em>
-<li><strong>Logic Node:</strong> Focuses on liquidity, audit trails, and capital resilience.</li>
-<li><strong>Weighting:</strong> 40% of Overall Maturity.</li>
-
-<h3>Pillar C: Member Experience & Sustainability</h3>
-<em>Areas: 5 (Meetings), 8 (Welfare), 9 (Engagement)</em>
-<li><strong>Logic Node:</strong> Focuses on retention, pulse, and long-term socio-economic impact.</li>
-<li><strong>Weighting:</strong> 25% of Overall Maturity.</li>
-
-<hr>
-
-<h2>3. Operational Logic Rules</h2>
-
-<h3>3.1 The 7-Day Grace Period</h3>
-Upon completion of a level 3-5 assessment, a <strong>Strict 168-hour (7 day) lock</strong> is applied.
-<li><strong>Node Action:</strong> Edits are permitted within this window only.</li>
-<li><strong>Audit Trigger:</strong> Any post-submission change triggers a "Refactored Score" flag in the dashboard.</li>
-
-<h3>3.2 Automated Recommendation Engine</h3>
-Logic for generating L1-L6 action plans:
-<li><strong>Priority HIGH:</strong> Applied to any Section scoring < 50%.</li>
-<li><strong>Priority MEDIUM:</strong> Applied to any Section scoring 51-75%.</li>
-<li><strong>Protocol:</strong> "High Priority" items must be addressed before the next 2-quarter audit cycle.</li></ul><br />
-<br />
-<h3>3.3 Maturity Calculation (Geometric Mean)</h3><br />
-To prevent "Score Puffing" (offsetting a critical failure with a high score elsewhere), the system prioritizes consistent performance across all nodes. A zero-score in a critical banking node will significantly drag down the total maturity regardless of other high scores.<br />
-<br />
-<hr><br />
-<em>Growing Cents Strategic Logic Matrix v1.8 | Authorized for UAT</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>Assessment Logic Matrix</h1>
+<p>Technical specification for the scoring algorithm, maturity thresholds, conditional logic rules, and assessment lifecycle as implemented in the platform. All scoring logic mirrors the Excel-based tool (vFINAL) provided by Growing Cents Limited.</p>
+
+<h2>1. Maturity Level Thresholds</h2>
+<p>The platform maps overall percentage scores to maturity levels and stages as follows. These thresholds are hardcoded in <code>AssessmentController@store()</code> and <code>generateReportData()</code>.</p>
+<div class='table-wrapper'><table>
+<tr><th>Score Range</th><th>Level</th><th>Stage</th><th>Colour</th></tr>
+<tr><td>91% – 100%</td><td>Level 5</td><td><strong>SOARING</strong></td><td>Dark Green</td></tr>
+<tr><td>76% – 90%</td><td>Level 4</td><td><strong>PERFORMING</strong></td><td>Light Green</td></tr>
+<tr><td>51% – 75%</td><td>Level 3</td><td><strong>NORMING</strong></td><td>Yellow</td></tr>
+<tr><td>31% – 50%</td><td>Level 2</td><td><strong>FORMING</strong></td><td>Orange</td></tr>
+<tr><td>0% – 30%</td><td>Level 1</td><td><strong>SEEDING</strong></td><td>Red</td></tr>
+</table></div>
+<p>The same thresholds apply at all three levels: per section, per area, and overall.</p>
+
+<h2>2. Scoring Architecture — 3 Dimensions</h2>
+<p>Every response option in the JSON schema (<code>storage/app/data/complete_assessment_data.json</code>) carries three weight dimensions:</p>
+<div class='table-wrapper'><table>
+<tr><th>Weight Dimension</th><th>JSON Key</th><th>Used For</th></tr>
+<tr><td>Response Score for Statement</td><td><code>overall_score</code></td><td>Contributes to overall club score</td></tr>
+<tr><td>Response Score for Area</td><td><code>area_score</code></td><td>Contributes to the area percentage</td></tr>
+<tr><td>Response Score for Section</td><td><code>section_score</code></td><td>Contributes to the section percentage</td></tr>
+</table></div>
+<p>For each dimension, the engine accumulates <code>actual_score</code> and <code>max_possible_score</code> then computes <code>percentage = (actual / max) * 100</code>.</p>
+
+<h2>3. The 9 Assessment Areas</h2>
+<div class='table-wrapper'><table>
+<tr><th>Area</th><th>Name</th><th>Questions</th></tr>
+<tr><td>Area 0</td><td>Preliminary Information (KYC)</td><td>18 KYC fields — not scored</td></tr>
+<tr><td>Area 1</td><td>Governance</td><td>Scored</td></tr>
+<tr><td>Area 2</td><td>Quantitative Performance</td><td>Scored</td></tr>
+<tr><td>Area 3</td><td>Communication &amp; Decision Making</td><td>Scored</td></tr>
+<tr><td>Area 4</td><td>Member Shareholding &amp; Equitable Stake</td><td>Scored</td></tr>
+<tr><td>Area 5</td><td>Consequence Management</td><td>Scored</td></tr>
+<tr><td>Area 6</td><td>Records Management</td><td>Scored</td></tr>
+<tr><td>Area 7</td><td>Monitoring &amp; Reporting</td><td>Scored</td></tr>
+<tr><td>Area 8</td><td>Member Participation &amp; Involvement</td><td>Scored</td></tr>
+<tr><td>Area 9</td><td>Assurance &amp; Development</td><td>Scored</td></tr>
+</table></div>
+<p>Total: <strong>121 scored questions</strong> across Areas 1–9, loaded from <code>complete_assessment_data.json</code>.</p>
+
+<h2>4. Conditional Logic Rules</h2>
+<p>The platform implements <strong>384 conditional rules</strong> loaded from <code>storage/app/data/conditional_rules.json</code>. These rules dynamically show, hide, or make mandatory specific questions based on earlier responses — mirroring the if/else branches in the Excel tool.</p>
+<h3>How Conditional Logic Works</h3>
+<ul>
+  <li>Rules are passed to the frontend as a JavaScript object on assessment form load</li>
+  <li>When a user changes a response, the frontend JS evaluates all dependent rules and shows/hides affected questions in real time</li>
+  <li>Hidden questions are <strong>not stored</strong> in the responses JSON on submission — they score 0</li>
+  <li>Not Applicable (option value = 6) responses carry weight = 0 in all three dimensions</li>
+</ul>
+<h3>Example Rule Structure</h3>
+<pre><code>{
+  "trigger_question_id": "1Structure&amp;Naturei",
+  "trigger_value": 6,
+  "affected_questions": ["1Structure&amp;Natureii", "1Structure&amp;Natureiii"],
+  "action": "hide"
+}</code></pre>
+
+<h2>5. Assessment Lifecycle</h2>
+<div class='table-wrapper'><table>
+<tr><th>Status</th><th>Trigger</th><th>Can Edit?</th><th>Report Accessible?</th></tr>
+<tr><td><span class='badge badge-amber'>Draft</span></td><td>Autosave fires (AJAX) or manual save</td><td>Yes</td><td>No</td></tr>
+<tr><td><span class='badge badge-green'>Completed</span></td><td>User clicks Submit — all required fields present</td><td>No (unless within 7-day grace)</td><td>Yes (if subscription active)</td></tr>
+<tr><td><span class='badge badge-blue'>Grace Period</span></td><td>Within 7 days of submission</td><td>Yes — edits allowed</td><td>Yes</td></tr>
+<tr><td><span class='badge badge-red'>Locked</span></td><td>7 days post-submission elapsed</td><td>No — immutable</td><td>Yes (if subscription active)</td></tr>
+<tr><td><span class='badge badge-purple'>Archived</span></td><td>Soft-deleted via destroy()</td><td>No</td><td>No — in Recycle Bin</td></tr>
+</table></div>
+
+<h2>6. Assessment Edit Rules</h2>
+<ul>
+  <li>Responses cannot be edited after submission (status = Completed)</li>
+  <li>SRS Section 9 defines a <strong>7-day grace period</strong> — automated. Implementation: <code>grace_period_expires_at</code> field on assessments table, set to <code>now() + 7 days</code> on submission</li>
+  <li>After grace period expires: immutable. No edit endpoint accessible.</li>
+  <li>Assessment date (<code>reporting_date</code>) is set from KYC question <code>0aii</code> and cannot be changed post-submission</li>
+  <li>Club name and inception date are uneditable in Area 0 KYC on repeat assessments (enforced at frontend)</li>
+</ul>
+
+<h2>7. Report Output Fields</h2>
+<p>After submission, <code>generateReportData()</code> produces the following fields stored as JSON in <code>assessments.report_data</code>:</p>
+<div class='table-wrapper'><table>
+<tr><th>Field</th><th>Description</th></tr>
+<tr><td><code>scores.overall.actual</code></td><td>Raw accumulated score across all 121 questions</td></tr>
+<tr><td><code>scores.overall.max</code></td><td>Maximum possible score</td></tr>
+<tr><td><code>scores.overall.percentage</code></td><td>Overall maturity percentage (2 decimal places)</td></tr>
+<tr><td><code>formattedAreas[]</code></td><td>Array: areaName, percentage, maturityLevel, maturityStage per area</td></tr>
+<tr><td><code>formattedAreas[].sections[]</code></td><td>Nested array: sectionName, percentage, maturityLevel, maturityStage per section</td></tr>
+<tr><td><code>maturityLevel</code></td><td>Overall level (1–5)</td></tr>
+<tr><td><code>maturityStage</code></td><td>Overall stage label (SEEDING / FORMING / NORMING / PERFORMING / SOARING)</td></tr>
+<tr><td><code>clubName</code></td><td>From KYC Area 0</td></tr>
+<tr><td><code>reportingDate</code></td><td>From KYC question 0aii</td></tr>
+</table></div>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

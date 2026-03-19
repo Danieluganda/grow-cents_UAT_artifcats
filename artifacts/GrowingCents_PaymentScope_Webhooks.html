@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_PaymentScope_Webhooks.md | Growing Cents UAT</title>
+    <title>Payment Scope & Webhooks | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,96 +35,164 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: Payment Scope & Webhooks</h1><br />
-<br />
-Strategic blueprint for mock-payment integration and webhook handling payloads.<br />
-<br />
-<h2>Subscription Tiers (Mock Scope)</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Tier</th><th>Capabilities</th><th>Monthly Yield (USD)</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>Basic Institutional</strong></th><th>Single-node audit, basic roadmap</th><th>$49.00</th></tr><tr><td><strong>Elite Financial</strong></td><td>Multi-node, Advanced Strategic AI, PDF Exports</td><td>$149.00</td></tr><tr><td><strong>Global Command</strong></td><td>Full API access, Webhooks, Multi-region governance</td><td>$299.00</td></tr></table></div><br />
-<h2>Webhook Protocol: `subscription_active`</h2><br />
-<br />
-<strong>Payload Schema:</strong><br />
-<br />
-<pre><code>json
-{
-  &quot;event&quot;: &quot;subscription.activated&quot;,
-  &quot;data&quot;: {
-    &quot;subscription_id&quot;: &quot;SUB-7821-GC&quot;,
-    &quot;club_id&quot;: 412,
-    &quot;plan_tier&quot;: &quot;Elite&quot;,
-    &quot;expires_at&quot;: &quot;2027-03-17&quot;,
-    &quot;transaction_ref&quot;: &quot;TXN_MOCK_99827&quot;
-  },
-  &quot;signature&quot;: &quot;SHA256_HASH_REDACTED&quot;
-}</code></pre><br />
-<br />
-<h2>Webhook Protocol: `subscription_renewed`</h2><br />
-<br />
-<strong>Payload Schema:</strong><br />
-<pre><code>json
-{
-  &quot;event&quot;: &quot;subscription.renewed&quot;,
-  &quot;data&quot;: {
-    &quot;subscription_id&quot;: &quot;SUB-7821-GC&quot;,
-    &quot;new_expiry&quot;: &quot;2028-03-17&quot;,
-    &quot;amount_yielded&quot;: 14900
-  }
-}</code></pre><br />
-<br />
-<h2>Internal Refund Logic</h2><br />
-<br />
-If a club requests a strategic retreat (refun), the following protocol is invoked:<br />
-1. <strong>Mark Subscription</strong>: `status = 'refunding'`<br />
-2. <strong>Revoke Elite Access</strong>: Downgrade logic at middleware layer.<br />
-3. <strong>Verify Yield Correction</strong>: Audit log entry for financial rollback.<br />
-<br />
-<h2>Handling Logic</h2><br />
-<br />
-1. <strong>Validate Signature</strong>: Ensure payload originates from the verified yield stream.<br />
-2. <strong>Check SubscriptionID</strong>: Prevent double-entry in the ledger.<br />
-3. <strong>Update Institutional Status</strong>: Reactivate club features immediately.<br />
-4. <strong>Log to Audit Trail</strong>: Store yield success event.<br />
-<br />
-<hr><br />
-<em>Growing Cents Financial Integration Blueprint</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>Payment Scope &amp; Webhooks</h1>
+<p>This document defines the payment integration scope for the Growing Cents platform as agreed in the signed SRS, the current UAT status of payment features, the subscription billing model, and the webhook payload structure for when Pesapal integration is activated.</p>
+
+<div class='callout callout-amber'>
+  <strong>📌 Current Status:</strong> Payment integration is explicitly deferred in SRS Section 12 — "Subscription Gateway — Pesapal — pending agreement on merchant account." The payment gate is currently inactive (commented out). All reports are accessible during UAT without payment. Pesapal integration will be built and tested as a separate phase once the merchant account is active.
+</div>
+
+<h2>1. Subscription Model (Per SRS Section 9)</h2>
+<div class='table-wrapper'><table>
+<tr><th>Feature</th><th>Free (No Subscription)</th><th>Paid Subscription</th></tr>
+<tr><td>Complete Assessment</td><td>✅</td><td>✅</td></tr>
+<tr><td>View Overall Score</td><td>✅</td><td>✅</td></tr>
+<tr><td>View Full Report / Dashboard</td><td>❌</td><td>✅</td></tr>
+<tr><td>Download PDF</td><td>❌</td><td>✅</td></tr>
+<tr><td>Email Report</td><td>❌</td><td>✅</td></tr>
+<tr><td>Access Past Assessments</td><td>❌</td><td>✅ (paid ones only)</td></tr>
+<tr><td>Growing Cents eBook</td><td>✅ (link only)</td><td>✅ (embedded in report)</td></tr>
+</table></div>
+<ul>
+  <li>Each club has a unique subscription account</li>
+  <li>Each new assessment submission triggers a new billing event</li>
+  <li>Completed and paid-for reports remain accessible permanently to that club</li>
+</ul>
+
+<h2>2. Billing Rules</h2>
+<ul>
+  <li><strong>Billing unit: per assessment</strong> — each assessment submission creates a new billing event for that club</li>
+  <li>Billing is per club, not per user — one subscription covers all club members' access to that assessment's report</li>
+  <li>Subscription plan tiers are to be defined by Growing Cents Limited — not yet finalised in SRS</li>
+  <li>SubscriptionID syntax (per SRS Section 5): must include sequential numbering + paymentRef. Format: <code>GCS-{YEAR}-{0001}-{PAYREF}</code></li>
+</ul>
+
+<h2>3. Payment Lifecycle States</h2>
+<div class='table-wrapper'><table>
+<tr><th>State</th><th>DB Status</th><th>Trigger</th><th>Effect on Access</th></tr>
+<tr><td><span class='badge badge-amber'>Initiated</span></td><td><code>pending</code></td><td>User clicks "Subscribe" → redirected to Pesapal</td><td>No access change yet</td></tr>
+<tr><td><span class='badge badge-amber'>Pending</span></td><td><code>pending</code></td><td>User on Pesapal payment page — not yet completed</td><td>No access change</td></tr>
+<tr><td><span class='badge badge-green'>Success</span></td><td><code>active</code></td><td>Pesapal sends <code>charge.success</code> webhook → <code>SubscriptionController@callback()</code></td><td>Report unlocked. <code>end_date</code> set.</td></tr>
+<tr><td><span class='badge badge-red'>Failed</span></td><td><code>failed</code></td><td>Pesapal sends failure callback</td><td>No access. User shown retry prompt.</td></tr>
+<tr><td><span class='badge badge-red'>Reversed</span></td><td><code>reversed</code></td><td>Chargebank / refund initiated</td><td>Access revoked. Subscription deactivated.</td></tr>
+</table></div>
+
+<h2>4. Mock Payment Scope for UAT</h2>
+<p>Since Pesapal is not yet integrated, the following mock approach is used during UAT:</p>
+<ul>
+  <li>Payment gate is commented out in <code>AssessmentController@show()</code> and <code>@downloadPdf()</code> — all reports accessible</li>
+  <li>The <code>subscriptions</code> table exists and the model is complete — data can be manually inserted for testing subscription logic</li>
+  <li>The <code>SubscriptionController</code> has <code>plans()</code>, <code>store()</code>, and <code>callback()</code> routes scaffolded for Pesapal</li>
+  <li>Moses can test subscription-related UAT scenarios (G1–G2) by directly seeding a subscription record</li>
+</ul>
+
+<h2>5. Pesapal Webhook Payload Structure</h2>
+<p>When Pesapal integration is activated, the callback endpoint <code>GET /clubs/{club}/subscribe/callback</code> will receive the following from Pesapal:</p>
+<pre><code>// Pesapal IPN (Instant Payment Notification) — query parameters
+GET /clubs/1/subscribe/callback
+  ?OrderTrackingId=PESAPAL-TXN-20260315-001
+  &OrderMerchantReference=GCS-2026-0001-PESAPAL
+  &OrderNotificationType=IPNCHANGE</code></pre>
+
+<h3>Expected Webhook Handling Flow</h3>
+<pre><code>// SubscriptionController@callback()
+// 1. Receive Pesapal IPN parameters
+// 2. Call Pesapal API to verify transaction status
+// 3. If status === 'COMPLETED':
+Subscription::where('payment_reference', $orderTrackingId)
+    ->update([
+        'status'     => 'active',
+        'start_date' => now(),
+        'end_date'   => now()->addYear(),
+    ]);
+// 4. AuditLog::log('subscription_activated', clubId)
+// 5. Redirect to assessment report</code></pre>
+
+<h3>Success Callback Payload (Mock Sample for Testing)</h3>
+<pre><code>{
+  "event": "subscription.activated",
+  "data": {
+    "subscription_id": "GCS-2026-0001-PESAPAL",
+    "club_id": 1,
+    "plan_type": "basic",
+    "start_date": "2026-03-19",
+    "end_date": "2027-03-19",
+    "payment_reference": "PESAPAL-TXN-20260319-001",
+    "amount": 50000,
+    "currency": "UGX"
+  }
+}</code></pre>
+
+<h3>Failed Payment Callback (Mock Sample)</h3>
+<pre><code>{
+  "event": "subscription.failed",
+  "data": {
+    "subscription_id": "GCS-2026-0001-PESAPAL",
+    "club_id": 1,
+    "reason": "Insufficient funds",
+    "payment_reference": "PESAPAL-TXN-20260319-002"
+  }
+}</code></pre>
+
+<h2>6. Subscription DB Record Structure</h2>
+<pre><code>// subscriptions table — key fields
+{
+  "club_id": 1,
+  "plan_type": "basic",
+  "status": "active",           // pending | active | failed | reversed | expired
+  "start_date": "2026-03-19",
+  "end_date": "2027-03-19",
+  "amount": 50000,
+  "currency": "UGX",
+  "payment_method": "mobile_money",
+  "payment_reference": "PESAPAL-TXN-20260319-001"
+}</code></pre>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

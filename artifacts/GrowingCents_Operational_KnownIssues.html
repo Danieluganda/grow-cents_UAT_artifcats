@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_Operational_KnownIssues.md | Growing Cents UAT</title>
+    <title>Operational Known Issues | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,57 +35,98 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: Operational Known Issues v1.0</h1><br />
-<br />
-A log of known architectural behaviors and logic limitations for the current UAT build.<br />
-<br />
-<h2>1. Known Tactical Issues</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Issue ID</th><th>Module</th><th>Description</th><th>Workaround</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>KI-001</strong></th><th>PDF Engine</th><th>Slight delay (3-5s) in rendering "Elite" charts on low-resource nodes.</th><th>Display "Intelligence Rendering" loader.</th></tr><tr><td><strong>KI-002</strong></td><td>2FA</td><td>Email dispatch lag in specific regional nodes.</td><td>Implement "Resend Token" after 60s cooldown.</td></tr><tr><td><strong>KI-003</strong></td><td>Dashboard</td><td>Safari browsers exhibit minor pinstripe flicker in "Audit Mode".</td><td>Use Chrome/Edge for high-command oversight.</td></tr></table></div><br />
-<h2>2. Logic Limitations</h2><br />
-<br />
-<ul><li><strong>Bulk Reset</strong>: Resetting staging data via `migrate:fresh` wipes the local `.env` cache; re-run `php artisan key:generate`.</li>
-<li><strong>Multi-Club Edit</strong>: Concurrent editing of a single assessment by two club agents may trigger a `409 Conflict`.</li></ul><br />
-<br />
-<hr><br />
-<em>Growing Cents Institutional Transparency</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>Operational Known Issues</h1>
+<p>This document lists all known bugs, gaps, and limitations in the current UAT build of the Growing Cents platform. These are confirmed against the actual codebase. All items are tracked in the implementation plan with assigned priorities and fix timelines.</p>
+
+<div class='callout callout-warn'>
+  <strong>⚠️ Critical:</strong> Items marked P0 will cause immediate test failures on Day 1 of UAT execution. These must be resolved before Moses begins testing.
+</div>
+
+<h2>1. Critical Bugs — P0 (Must Fix Before UAT Starts)</h2>
+<div class='table-wrapper'><table>
+<tr><th>ID</th><th>Module</th><th>Issue</th><th>SRS Ref</th><th>Status</th></tr>
+<tr><td>KI-001</td><td>Roles &amp; Permissions</td><td><strong>Club Members can currently submit assessments.</strong> The <code>permission:submit_assessment</code> middleware was removed from <code>AssessmentController@store()</code>. All authenticated users can submit. SRS Section 8 says Club Member = ❌ Submit Assessment.</td><td>S8</td><td><span class='badge badge-red'>In Progress</span></td></tr>
+<tr><td>KI-002</td><td>User Model</td><td><strong>User status field missing from <code>$fillable</code>.</strong> <code>UserManagementController@approve()</code> and <code>@suspend()</code> call <code>$user->update(['status' => 'active'])</code> but Laravel silently drops unfillable fields. Suspended users may still be able to log in.</td><td>S4</td><td><span class='badge badge-red'>In Progress</span></td></tr>
+<tr><td>KI-003</td><td>SSL / Hosting</td><td><strong>SSL certificate hostname mismatch on assessment.growing-cents.com.</strong> Browser shows security warning. No UAT testing can proceed until SSL is valid.</td><td>S7</td><td><span class='badge badge-amber'>Chasing Provider</span></td></tr>
+<tr><td>KI-004</td><td>2FA / Security</td><td><strong>No rate limit on OTP resend endpoint.</strong> <code>GET /verify-2fa/resend</code> has no throttle middleware. Allows unlimited OTP resend attempts — brute force vulnerability.</td><td>S4 NFR</td><td><span class='badge badge-red'>In Progress</span></td></tr>
+</table></div>
+
+<h2>2. SRS Contractual Gaps — P1 (Fix This Week)</h2>
+<div class='table-wrapper'><table>
+<tr><th>ID</th><th>Module</th><th>Issue</th><th>SRS Ref</th><th>Status</th></tr>
+<tr><td>KI-005</td><td>Subscription Logic</td><td><strong>7-day grace period not implemented.</strong> SRS Section 9 explicitly states "Grace period of 7 days after submission for any edits. This should be automated." No <code>grace_period_expires_at</code> field exists on the assessments table.</td><td>S9</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-006</td><td>Reports &amp; Export</td><td><strong>Excel (XLSX) export not implemented.</strong> SRS Section 6a requires "Download Options: PDF, Excel, Email Share." Only CSV export exists via <code>AssessmentController@export()</code>.</td><td>S6a</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-007</td><td>Admin — Nudges</td><td><strong>Incomplete assessment nudges not built.</strong> SRS Section 6c requires automated nudges at 3, 7, 14, and 30 days idle. No scheduled command exists in the codebase.</td><td>S6c</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-008</td><td>Audit Log</td><td><strong>AuditLog missing required fields.</strong> SRS Section 5 defines the AuditLog entity with: BeforeValue, AfterValue, SessionID, SuccessStatus, Remarks. None of these columns exist in the current <code>audit_logs</code> table.</td><td>S5</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-009</td><td>Club Registration</td><td><strong>Country dropdown, cascading city list, and currency auto-populate not implemented.</strong> SRS Section 5 defines Country (from list), City (from list based on country), Currency (pre-populated from country). All three fields are currently free-text inputs.</td><td>S5</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-010</td><td>Club Registration</td><td><strong>Club email ≠ user email validation missing.</strong> SRS Section 5 states "MUST BE DIFFERENT FROM USER EMAIL." No validation rule enforces this in <code>ClubController@register()</code>.</td><td>S5</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-011</td><td>Monitoring</td><td><strong>UptimeRobot not configured.</strong> SRS Section 7 states "Developer to setup free version and share login and tracking details." Not yet done.</td><td>S7</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-012</td><td>Authentication</td><td><strong>2FA middleware not applied to club routes.</strong> The <code>2fa</code> middleware is only on the <code>/profile</code> route group. All club routes (<code>/clubs/*</code>) use only <code>auth</code> middleware — 2FA is bypassed after the initial session.</td><td>S4 NFR</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+<tr><td>KI-013</td><td>Authentication</td><td><strong><code>last_login_at</code> not updated on login.</strong> <code>TwoFactorController@store()</code> does not update <code>last_login_at</code> after successful 2FA. The Login Activity report (<code>admin.users.login-activity</code>) queries this field — it will show null for all users.</td><td>S6c</td><td><span class='badge badge-red'>Not Started</span></td></tr>
+</table></div>
+
+<h2>3. Blocked Items — Pending Growing Cents</h2>
+<div class='table-wrapper'><table>
+<tr><th>ID</th><th>Issue</th><th>Blocked On</th></tr>
+<tr><td>BL-001</td><td>Score accuracy validation (Sections D + Q) — UAT EXIT CRITERION. 99%+ Excel parity cannot be tested.</td><td>Emmanuel must provide unlocked Excel scorecard (vFINAL)</td></tr>
+<tr><td>BL-002</td><td>Report visual parity check — app report must match Excel dashboard design.</td><td>Emmanuel must provide Excel dashboard screenshots/reference</td></tr>
+<tr><td>BL-003</td><td>Payment webhook testing.</td><td>Pesapal merchant account agreement + webhook samples from Growing Cents</td></tr>
+</table></div>
+
+<h2>4. Known Limitations (By Design)</h2>
+<ul>
+  <li>Payment gateway (Pesapal) is not integrated — deferred pending merchant account. All reports accessible without subscription during UAT.</li>
+  <li>Spatie roles are platform-wide, not club-specific. Club-level permission enforcement relies on <code>club_id</code> scoping in controllers rather than per-club permission checks. See RBAC Model v2.0 Gap #6.</li>
+  <li>SMS OTP delivery is not implemented — OTP is email-only during UAT. SRS Section 4 notes SMS as a future integration.</li>
+  <li>Auto-suggest for existing clubs during registration is not yet implemented (A1.2).</li>
+  <li>Join-request workflow (user-initiated) is not yet implemented — current flow is admin-push invite only (A2.1).</li>
+</ul>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

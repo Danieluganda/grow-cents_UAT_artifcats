@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_ErrorCodeCatalogue.md | Growing Cents UAT</title>
+    <title>Error Code Catalogue | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,63 +35,112 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: Error Code Catalogue v1.5</h1><br />
-<br />
-Institutional protocol for HTTP response nodes and operational troubleshooting.<br />
-<br />
-<h2>1. Governance & Protocol Nodes (4XX)</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Code</th><th>Status</th><th>Institutional Context</th><th>Mitigation Protocol</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>401</strong></th><th>Unauthorized</th><th>Expired 2FA handshake or invalid session</th><th>Redirect to Login; Clear local node state</th></tr><tr><td><strong>403</strong></td><td>Forbidden</td><td>Governance bypass attempt (e.g., Club as Admin)</td><td>Log to Audit Trail; Lockdown node for 15 mins</td></tr><tr><td><strong>404</strong></td><td>Not Found</td><td>Target Entity (Club/Assessment) missing from ledger</td><td>Soft-delete check; Return to secure list view</td></tr><tr><td><strong>409</strong></td><td>Conflict</td><td>Concurrent edit attempt on single assessment node</td><td>Trigger 'Grace Period' logic; Notify peer auditor</td></tr><tr><td><strong>419</strong></td><td>Handshake Fail</td><td>CSRF mismatch during secure form submission</td><td>Flush session; Re-initialize auth handshake</td></tr><tr><td><strong>422</strong></td><td>Logic Error</td><td>Validation failure (e.g., Missing Required Audit Field)</td><td>Highlight logic node in UI; Block submission</td></tr><tr><td><strong>423</strong></td><td>Locked</td><td>Edit attempt after 7-day grace period lock</td><td>Return 'Institutional Freeze' status; Contact L1</td></tr><tr><td><strong>429</strong></td><td>Throttling</td><td>API request volume exceeds institutional limits</td><td>Apply exponential backoff; Render 'Queueing' HUD</td></tr></table></div><br />
-<hr><br />
-<br />
-<h2>2. Infrastructure & CDN Nodes (5XX)</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Code</th><th>Status</th><th>Institutional Context</th><th>Mitigation Protocol</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>500</strong></th><th>System Error</th><th>Internal Logic Collapse / Database Timeout</th><th>Automated Error Capture (Laravel Sentry); Display L1 node</th></tr><tr><td><strong>503</strong></td><td>Maintenance</td><td>Institutional upgrade or node migration</td><td>Render 'Institutional Uplift' notice</td></tr><tr><td><strong>504</strong></td><td>Timeout</td><td>CDN delay or external processor lag (Paystack)</td><td>Trigger retry-loop (3 attempts); Log latency</td></tr></table></div><br />
-<hr><br />
-<br />
-<h2>3. Webhook Specific Resilience</h2><br />
-<div class="table-wrapper"><table><tr><th>Event</th><th>Error Pattern</th><th>Response Logic</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th>`charge.failed`</th><th>400 (Bad Sig)</th><th>Drop request; Log Security Alert</th></tr><tr><td>`charge.success`</td><td>500 (ID Mismatch)</td><td>Store in 'Pending Reconciliation' ledger</td></tr></table></div><br />
-<hr><br />
-<em>Growing Cents Operational Integrity Catalogue v1.8 | Institutional Handover Ready</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>Error Code Catalogue</h1>
+<p>Complete reference of HTTP response codes returned by the Growing Cents platform. Every route in <code>routes/web.php</code> follows standard Laravel HTTP conventions. This catalogue maps each code to its trigger condition, which endpoint(s) can return it, and the correct handling approach.</p>
+
+<h2>1. Authentication &amp; Session Errors (4xx)</h2>
+<div class='table-wrapper'><table>
+<tr><th>Code</th><th>Status</th><th>When It Occurs</th><th>Endpoints</th><th>Handling</th></tr>
+<tr><td><span class='badge badge-red'>401</span></td><td>Unauthenticated</td><td>User is not logged in and tries to access a protected route. Laravel Sanctum/session has expired.</td><td>All routes behind <code>auth</code> middleware</td><td>Laravel auto-redirects to <code>/login</code>. On AJAX: returns JSON <code>{"message":"Unauthenticated."}</code></td></tr>
+<tr><td><span class='badge badge-red'>403</span></td><td>Forbidden</td><td>User is logged in but does not have the required role or permission. E.g. Club Member attempting to POST <code>/assessments</code>.</td><td>All routes behind <code>role:*</code> or <code>permission:*</code> middleware</td><td>Returns 403 page or JSON. Common cases: Club Member submit attempt, non-admin accessing <code>/admin/*</code></td></tr>
+<tr><td><span class='badge badge-red'>404</span></td><td>Not Found</td><td>Resource does not exist or user is trying to access a club/assessment they do not belong to. <code>findOrFail()</code> throws this.</td><td>All <code>/{club}/assessments/{assessment}</code> routes</td><td>Returns 404 page. Prevents horizontal access — Club A cannot access Club B records even if they guess the ID.</td></tr>
+<tr><td><span class='badge badge-amber'>419</span></td><td>CSRF Token Mismatch</td><td>Form submitted without a valid CSRF token. Usually happens when a session expires mid-form, or on direct API calls without the token header.</td><td>All POST/PUT/PATCH/DELETE routes</td><td>Laravel returns 419. Fix: ensure <code>@csrf</code> in Blade forms. For AJAX: include <code>X-CSRF-TOKEN</code> header from <code>meta[name=csrf-token]</code>.</td></tr>
+<tr><td><span class='badge badge-amber'>422</span></td><td>Unprocessable Entity</td><td>Request validation failed. Required fields missing, wrong format, or business rule violated.</td><td>All POST/PUT/PATCH routes with validation</td><td>Returns JSON with <code>{"message":"...","errors":{"field":["reason"]}}</code>. Common cases below.</td></tr>
+<tr><td><span class='badge badge-amber'>429</span></td><td>Too Many Requests</td><td>Rate limit exceeded. OTP resend throttled at 3 attempts per minute. Login throttled at 5 attempts per minute.</td><td><code>POST /login</code>, <code>GET /verify-2fa/resend</code></td><td>Returns 429 with <code>Retry-After</code> header. User must wait before retrying.</td></tr>
+</table></div>
+
+<h2>2. Common 422 Validation Errors by Endpoint</h2>
+<div class='table-wrapper'><table>
+<tr><th>Endpoint</th><th>Field</th><th>Validation Rule</th><th>Error Message</th></tr>
+<tr><td><code>POST /login</code></td><td><code>email</code></td><td>required|email</td><td>These credentials do not match our records.</td></tr>
+<tr><td><code>POST /verify-2fa</code></td><td><code>code</code></td><td>required|string|size:6</td><td>The verification code is invalid or has expired.</td></tr>
+<tr><td><code>POST /clubs/register</code></td><td><code>name</code></td><td>required|string|max:255</td><td>The name field is required.</td></tr>
+<tr><td><code>POST /clubs/register</code></td><td><code>email</code></td><td>required|email|unique:clubs</td><td>The email has already been taken. (duplicate club)</td></tr>
+<tr><td><code>POST /clubs/register</code></td><td><code>email</code></td><td>Rule::notIn([user email])</td><td>Club email must be different from your personal email.</td></tr>
+<tr><td><code>POST /clubs/{club}/members/invite</code></td><td><code>role</code></td><td>required|in:admin,member</td><td>The selected role is invalid.</td></tr>
+<tr><td><code>POST /clubs/{club}/assessments</code></td><td><code>responses</code></td><td>required|array</td><td>Assessment responses are required.</td></tr>
+<tr><td><code>POST /clubs/{club}/assessments/{id}/email</code></td><td><code>email</code></td><td>required|email</td><td>The email must be a valid email address.</td></tr>
+<tr><td><code>PUT /admin/user-management/users/{id}</code></td><td><code>status</code></td><td>required|in:active,suspended,pending</td><td>The selected status is invalid.</td></tr>
+<tr><td><code>POST /admin/user-management/roles</code></td><td><code>name</code></td><td>required|unique:roles</td><td>The name has already been taken. (duplicate role)</td></tr>
+</table></div>
+
+<h2>3. Server Errors (5xx)</h2>
+<div class='table-wrapper'><table>
+<tr><th>Code</th><th>Status</th><th>When It Occurs</th><th>Handling</th></tr>
+<tr><td><span class='badge badge-red'>500</span></td><td>Internal Server Error</td><td>Unhandled exception in application code. DB connection failure. Missing JSON schema file (<code>complete_assessment_data.json</code> not found). DomPDF render failure on malformed report data.</td><td>Laravel logs to <code>storage/logs/laravel.log</code>. Returns error page in production (<code>APP_DEBUG=false</code>). During UAT: <code>APP_DEBUG=true</code> for full stack trace.</td></tr>
+<tr><td><span class='badge badge-amber'>503</span></td><td>Service Unavailable</td><td>Application is in maintenance mode (<code>php artisan down</code>). Hosting server overloaded.</td><td>Laravel returns maintenance page. Run <code>php artisan up</code> to restore.</td></tr>
+<tr><td><span class='badge badge-amber'>504</span></td><td>Gateway Timeout</td><td>PDF generation taking too long for very complex reports. External mail service (Mailtrap/SMTP) timing out.</td><td>Increase <code>max_execution_time</code> in PHP config. Check mail server connectivity.</td></tr>
+</table></div>
+
+<h2>4. Business Logic Responses (Not HTTP Errors)</h2>
+<p>These are application-level blocks returned with HTTP 200 or redirect responses, but with error messaging:</p>
+<div class='table-wrapper'><table>
+<tr><th>Scenario</th><th>HTTP Code</th><th>Response</th></tr>
+<tr><td>User tries to archive a Completed assessment</td><td>200 (redirect back)</td><td>Flash message: "Completed assessments cannot be archived."</td></tr>
+<tr><td>Assessment submitted with incomplete responses</td><td>422</td><td>Validation errors per missing field</td></tr>
+<tr><td>OTP submitted after expiry</td><td>422</td><td><code>{"code": ["The verification code is invalid or has expired."]}</code></td></tr>
+<tr><td>User tries to remove themselves from a club</td><td>200 (redirect back)</td><td>Flash message: "You cannot remove yourself."</td></tr>
+<tr><td>Admin tries to delete a role with assigned users</td><td>200 (redirect back)</td><td>Flash message: "Cannot delete a role that is in use or protected."</td></tr>
+<tr><td>Mail dispatch fails</td><td>422</td><td><code>{"email": ["Failed to send email. Check mail settings."]}</code></td></tr>
+</table></div>
+
+<h2>5. Assessment-Specific Status Codes</h2>
+<div class='table-wrapper'><table>
+<tr><th>Route</th><th>Method</th><th>Possible Response Codes</th></tr>
+<tr><td><code>/clubs/{club}/assessments/create</code></td><td>GET</td><td>200 (form loads), 401 (not logged in), 403 (no view_reports permission)</td></tr>
+<tr><td><code>/clubs/{club}/assessments</code></td><td>POST</td><td>302 (redirect to show), 403 (no submit_assessment), 422 (validation fail)</td></tr>
+<tr><td><code>/clubs/{club}/assessments/draft</code></td><td>POST</td><td>200 JSON (draft saved), 401 (not logged in)</td></tr>
+<tr><td><code>/clubs/{club}/assessments/{id}</code></td><td>GET</td><td>200 (report view), 403 (no view_reports), 404 (wrong club)</td></tr>
+<tr><td><code>/clubs/{club}/assessments/{id}/download</code></td><td>GET</td><td>200 (PDF stream), 403 (no export_data), 404 (not found), 500 (PDF generation fail)</td></tr>
+<tr><td><code>/clubs/{club}/assessments/{id}/email</code></td><td>POST</td><td>200 JSON, 422 (invalid email), 500 (mail fail)</td></tr>
+<tr><td><code>/clubs/{club}/assessments/{id}</code></td><td>DELETE</td><td>302 (archived), 200 (blocked — completed)</td></tr>
+</table></div>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

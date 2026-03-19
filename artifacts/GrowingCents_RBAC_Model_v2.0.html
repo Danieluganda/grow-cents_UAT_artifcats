@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_RBAC_Model_v2.0.md | Growing Cents UAT</title>
+    <title>RBAC Model v2.0 | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,72 +35,137 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: RBAC Model v2.0 (Scenarios)</h1><br />
-<br />
-Building upon the base architecture, the v2.0 model introduces the <strong>Institutional Auditor</strong> layer and simulates strategic access scenarios.<br />
-<br />
-<h2>1. The 7th Layer: Institutional Auditor (L0)</h2><br />
-<br />
-The <strong>Institutional Auditor</strong> is a specialized node with read-only "God-mode" access across all clubs for regulatory and quality assurance purposes, without administrative modification powers.<br />
-<br />
-<h2>2. Operational Scenarios</h2><br />
-<br />
-<h3>Scenario A: Unauthorized Assessment Edit</h3><br />
-<ul><li><strong>Actor</strong>: Club Member (L6)</li>
-<li><strong>Action</strong>: Attempt to `PATCH /assessments/{id}`</li>
-<li><strong>System Response</strong>: `403 Forbidden` - Logic block at `AssessmentPolicy`.</li>
-<li><strong>Log</strong>: "Unauthorized intervention attempt by Asset {ID}".</li>
-
-<h3>Scenario B: Regional Oversight</h3>
-<li><strong>Actor</strong>: Regional Manager (L3)</li>
-<li><strong>Action</strong>: View aggregated maturity trends for specialized sector.</li>
-<li><strong>System Response</strong>: `200 OK` - Aggregated Data Blade.</li>
-<li><strong>Protocol</strong>: Mask individual member names; preserve institutional metrics.</li>
-
-<h3>Scenario C: High Command Emergency</h3>
-<li><strong>Actor</strong>: Super Admin (L1)</li>
-<li><strong>Action</strong>: Activate <strong>Maintenance Lockdown</strong>.</li>
-<li><strong>System Response</strong>: Global Firewall engagement (Redirect 503 for all L2-L6).</li>
-<li><strong>Log</strong>: "Command level session lock initiated".</li></ul><br />
-<br />
-<hr><br />
-<em>Growing Cents Tactical Access Simulations</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>RBAC Model v2.0 — 7-Layer Interaction Design</h1>
+<p>This document defines the complete Role-Based Access Control model as requested by Moses Aaku — covering all 7 layers, how they interact, inheritance and propagation, runtime flexibility without coding, multi-role assignment, and honest known gaps.</p>
+
+<h2>1. The 7-Layer Model</h2>
+<div class='table-wrapper'><table>
+<tr><th>Layer</th><th>Concept</th><th>Growing Cents Example</th><th>Description</th></tr>
+<tr><td>7</td><td><strong>User</strong></td><td>Moses Aaku, Grace Atim, Emmanuel Mvano</td><td>An actual person. Has no permissions of their own — inherits everything through role assignments. User with no role = zero access (orphaned).</td></tr>
+<tr><td>6</td><td><strong>Role</strong></td><td>Club Admin, Club Member, Auditor, Club Secretary</td><td>A business-facing job function. A named bundle of permission groups. Managed at runtime via admin panel — no coding needed.</td></tr>
+<tr><td>5</td><td><strong>Permission Group</strong></td><td>Reporting Permissions, Assessment Permissions</td><td>A logical bundle of related permissions used as a building block for roles. In Spatie: multiple named permissions assigned to a role in one operation.</td></tr>
+<tr><td>4</td><td><strong>Permission</strong></td><td>view_reports, submit_assessment, export_data</td><td>The exact allowed right: Action ON Resource. A named string checked at middleware and controller level.</td></tr>
+<tr><td>3</td><td><strong>Action</strong></td><td>View, Submit, Export, Manage, Download</td><td>What the user wants to DO. Maps to HTTP methods and controller methods.</td></tr>
+<tr><td>2</td><td><strong>Resource</strong></td><td>Assessment, Report, Club Profile, Audit Log</td><td>The THING being accessed. Further scoped by club_id to enforce data isolation.</td></tr>
+<tr><td>1</td><td><strong>Policy / Context</strong></td><td>Active subscription, 7-day grace period, status = active</td><td>Conditions layered ON TOP of permissions. A user may have view_reports but still be blocked if no active subscription.</td></tr>
+</table></div>
+
+<h2>2. Inheritance &amp; Propagation</h2>
+<h3>Removing a Permission From a Role</h3>
+<p>When Admin removes <code>view_reports</code> from the Club Member role via the admin panel:</p>
+<ol>
+  <li>Spatie updates <code>role_has_permissions</code> — removes the link</li>
+  <li><strong>ALL</strong> users who hold Club Member role immediately lose <code>view_reports</code> access</li>
+  <li>No per-user changes needed — permission is evaluated dynamically on each request</li>
+  <li>Club Admins and Super Admins are unaffected — their role records are unchanged</li>
+</ol>
+<h3>Orphaned Access — User With No Role</h3>
+<ul>
+  <li><code>model_has_roles</code>: no entries for this user</li>
+  <li>Every permission check returns <code>false</code> → every protected route returns 403</li>
+  <li>User can reach the login page but cannot access any resource after login</li>
+</ul>
+
+<h2>3. Runtime Role &amp; Permission Management — No Coding Required</h2>
+<h3>Scenario: Create 'Club Secretary' Role</h3>
+<p>Admin wants a new role that can only generate/view reports — no submission rights:</p>
+<ol>
+  <li>Navigate to <strong>Admin Panel → User Management → Roles → Create Role</strong></li>
+  <li>Enter name: <code>Club Secretary</code>. Check permissions: ✅ view_reports ✅ export_data</li>
+  <li>Click Save → <code>UserManagementController@storeRole()</code> runs: <code>Role::create(['name'=>'Club Secretary'])</code> then <code>$role->syncPermissions(['view_reports','export_data'])</code></li>
+  <li>Navigate to Users → Find the user → Edit → Assign Role: Club Secretary</li>
+  <li>User now has view_reports and export_data — cannot submit assessments</li>
+</ol>
+<div class='callout callout-success'>Zero code changes. Zero deployment. Entire scenario handled in the admin panel UI.</div>
+<h3>Scenario: New Platform Feature → Assign to Role</h3>
+<ol>
+  <li>Developer adds new permission to DB on feature deployment (one-time migration)</li>
+  <li>Admin navigates to Roles → Edit relevant role → Check new permission → Save</li>
+  <li>All users with that role immediately inherit the new permission</li>
+</ol>
+
+<h2>4. Multi-Role Assignment</h2>
+<h3>Assign Multiple Roles Simultaneously</h3>
+<pre><code>// Assign both Club Admin AND Auditor roles
+$user->syncRoles(['Club Admin', 'Auditor']);
+
+// Add role without removing existing
+$user->assignRole('Auditor'); // keeps Club Admin, adds Auditor</code></pre>
+<p>When a user holds multiple roles, Spatie merges all permissions — the user gets the <strong>union</strong> of all permissions across all roles.</p>
+<h3>Promote Member to Admin in a Specific Club</h3>
+<pre><code>// Step 1: Update Spatie system role
+$user->syncRoles('Club Admin'); // removes Club Member, assigns Club Admin
+
+// Step 2: Update club pivot role
+$club->users()->updateExistingPivot($userId, ['role' => 'admin']);</code></pre>
+
+<h2>5. Club-Specific vs Platform-Wide — The Known Tension</h2>
+<div class='callout callout-warn'>
+  <strong>Gap #6:</strong> Spatie roles are platform-wide. If Grace is "Club Admin" in Spatie, she has Club Admin permissions across all clubs at the permission layer. Data isolation (club_id scoping in controllers) prevents her from seeing other clubs' data, but the permission itself isn't club-specific.
+</div>
+<h3>Current Approach</h3>
+<ul>
+  <li>Spatie role: platform-wide permission control</li>
+  <li>club_user pivot role: club-specific position display (admin/member label per club)</li>
+  <li>club_id scoping in all controller queries: prevents data leakage regardless of Spatie role</li>
+</ul>
+<h3>Full Fix (2–3 hours implementation)</h3>
+<p>Build a custom <code>CheckClubRole</code> middleware that checks the pivot table role for the specific club being accessed:</p>
+<pre><code>// middleware: clubrole:admin
+$pivotRole = $user->clubs()
+    ->where('club_id', $request->route('club'))
+    ->first()?->pivot->role;
+
+if ($pivotRole !== $requiredRole) {
+    abort(403, 'You do not have the required role in this club.');
+}</code></pre>
+<p>This would make permissions truly club-specific — Grace could be Admin in Club A and Member in Club B with different access rights in each.</p>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>

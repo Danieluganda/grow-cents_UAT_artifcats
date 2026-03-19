@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>GrowingCents_UAT_Artifact_Response_Pack_v1.0.md | Growing Cents UAT</title>
+    <title>UAT Artifact Response Pack v1.0 | Growing Cents</title>
     <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Marcellus&display=swap' rel='stylesheet'>
     <style>
         :root {
@@ -16,63 +16,15 @@
             --text-main: #e0e0e0;
         }
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0; padding: 0;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2a23 100%);
             color: var(--text-main);
             min-height: 100vh;
         }
-        .dashboard-body { padding: 40px; }
-        .hero-section { text-align: center; margin-bottom: 60px; }
-        .brand-logo { 
-            font-family: 'Marcellus', serif; 
-            font-size: 1.5rem; color: var(--brand-gold);
-            letter-spacing: 2px;
-        }
-        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
-        .brand-logo.large { font-size: 3rem; margin-bottom: 20px; }
-        
-        h1 { font-family: 'Marcellus', serif; color: #fff; font-size: 2.5rem; margin: 10px 0; }
-        p { opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-        .artifact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; max-width: 1200px; margin: 0 auto;
-        }
-        .artifact-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex; gap: 15px; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .artifact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .card-icon { font-size: 2rem; }
-        .card-info h3 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 5px 0; font-size: 0.85rem; }
-        
-        .status-pill {
-            display: inline-block;
-            background: rgba(193, 155, 59, 0.2);
-            color: var(--brand-gold);
-            padding: 2px 10px; border-radius: 10px;
-            font-size: 0.7rem; font-weight: 600;
-            margin-top: 10px; border: 1px solid var(--brand-gold);
-        }
-
-        /* Artifact Page Styles */
         .glass-container {
-            max-width: 900px; margin: 40px auto;
+            max-width: 960px; margin: 40px auto;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -83,69 +35,154 @@
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .back-link { color: var(--brand-gold); text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-
-        .content-area h1 { font-size: 2.22rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
+        .brand-logo { font-family: 'Marcellus', serif; font-size: 1.5rem; color: var(--brand-gold); letter-spacing: 2px; }
+        .brand-logo span { color: #fff; opacity: 0.6; font-size: 0.8rem; margin-left: 5px; }
+        .content-area h1 { font-family: 'Marcellus', serif; font-size: 2rem; margin-top: 0; color: #fff; border-bottom: 2px solid var(--brand-gold); padding-bottom: 15px; }
         .content-area h2 { color: var(--brand-gold); margin-top: 40px; font-family: 'Marcellus', serif; }
-        .content-area h3 { color: #fff; opacity: 0.9; }
-        
+        .content-area h3 { color: #fff; opacity: 0.9; margin-top: 28px; }
+        .content-area p { line-height: 1.7; opacity: 0.85; }
+        .content-area ul, .content-area ol { line-height: 1.9; opacity: 0.85; padding-left: 1.5em; }
+        .content-area li { margin-bottom: 6px; }
         .table-wrapper { overflow-x: auto; margin: 25px 0; border-radius: 10px; border: 1px solid var(--glass-border); }
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
-        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
+        th { background: rgba(193, 155, 59, 0.1); color: var(--brand-gold); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+        tr:last-child td { border-bottom: none; }
         tr:hover { background: rgba(255,255,255,0.02); }
-        
-        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); }
-        code { font-family: 'Courier New', monospace; color: #a5d6ff; }
-        
-        .image-box { text-align: center; margin: 30px 0; background: rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; }
-        .image-box img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .image-box p { margin-top: 10px; font-size: 0.9rem; font-style: italic; }
-
+        pre { background: #000; padding: 20px; border-radius: 10px; overflow-x: auto; border: 1px solid var(--glass-border); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: #a5d6ff; font-size: 0.88rem; }
+        pre code { display: block; line-height: 1.6; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin: 2px; }
+        .badge-green { background: rgba(30,180,80,0.15); color: #4ade80; border: 1px solid rgba(30,180,80,0.3); }
+        .badge-red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+        .badge-amber { background: rgba(193,155,59,0.15); color: var(--brand-gold); border: 1px solid rgba(193,155,59,0.3); }
+        .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .callout { padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
+        .callout-warn { background: rgba(220,38,38,0.08); border-color: #f87171; color: #fca5a5; }
+        .callout-info { background: rgba(59,130,246,0.08); border-color: #93c5fd; color: #bfdbfe; }
+        .callout-success { background: rgba(30,180,80,0.08); border-color: #4ade80; color: #bbf7d0; }
+        .callout-amber { background: rgba(193,155,59,0.08); border-color: var(--brand-gold); color: #fde68a; }
         footer { text-align: center; margin-top: 60px; font-size: 0.8rem; opacity: 0.5; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        
         .doc-link { color: var(--brand-gold); text-decoration: none; border-bottom: 1px dashed var(--brand-gold); }
         .doc-link:hover { border-bottom-style: solid; }
-        </style>
+        .step-num { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: rgba(193,155,59,0.2); color: var(--brand-gold); text-align: center; line-height: 28px; font-weight: 600; margin-right: 8px; font-size: 0.85rem; border: 1px solid rgba(193,155,59,0.4); }
+        .divider { border: none; border-top: 1px solid var(--glass-border); margin: 35px 0; }
+    </style>
 </head>
 <body>
-    <div class='glass-container'>
-        <nav class='top-nav'>
-            <a href='../index.html' class='back-link'>← Dashboard</a>
-            <div class='brand-logo'>Growing Cents<span>Elite</span></div>
-        </nav>
-        <main class='content-area'>
-            <h1>Growing Cents: Institutional UAT Artifact Response Pack v1.0</h1><br />
-<br />
-This master document serves as the technical baseline and official L1-L6 operational handover for the Growing Cents Institutional Intelligence System. It consolidates 19 discrete artifact nodes into a unified strategic dossier.<br />
-<br />
-<h2>1. Governance & Resilience Portfolio (G1-G10)</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Group</th><th>Artifact Descriptor</th><th>Operational Intent</th><th>Status</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>G1</strong></th><th><a href='GrowingCents_ERD_DataDictionary_v1.0.html' class='doc-link'>ERD & Data Dictionary</a></th><th>Full architectural blueprint and relational node logic.</th><th><strong>Complete</strong></th></tr><tr><td><strong>G2</strong></td><td><a href='GrowingCents_RBAC_Architecture_v1.0.html' class='doc-link'>RBAC Architecture</a></td><td>Governance-controlled access tiers (Admin, Club, Operative).</td><td><strong>Complete</strong></td></tr><tr><td><strong>G3</strong></td><td><a href='GrowingCents_Postman_FullPayloads_v2.0.html' class='doc-link'>Postman Payloads</a></td><td>Comprehensive dictionary of 112+ JSON response nodes.</td><td><strong>Complete</strong></td></tr><tr><td><strong>G4</strong></td><td><a href='GrowingCents_SequenceDiagrams.html' class='doc-link'>Sequence Diagrams</a></td><td>Visual handshakes for auth and assessment lifecycles.</td><td><strong>Complete</strong></td></tr><tr><td><strong>G5</strong></td><td><a href='GrowingCents_ErrorCodeCatalogue.html' class='doc-link'>Error Code Catalogue</a></td><td>Institutional protocol for node troubleshooting & remediation.</td><td><strong>Complete</strong></td></tr><tr><td><strong>G6</strong></td><td><a href='GrowingCents_Assessment_Logic_Matrix.html' class='doc-link'>Assessment Logic Matrix</a></td><td>Maturity thresholds (Level 1-5) and geometric mean protocols.</td><td><strong>Complete</strong></td></tr><tr><td><strong>G7</strong></td><td><a href='GrowingCents_MultiClub_CrossSell_Protocols.html' class='doc-link'>Multi-Club Protocols</a></td><td>Cross-institutional data isolation and cross-sell rules.</td><td><strong>Complete</strong></td></tr><tr><td><strong>G8</strong></td><td><a href='GrowingCents_Operational_KnownIssues.html' class='doc-link'>Operational Known Issues</a></td><td>Baseline bugs and node limitations for handover review.</td><td><strong>Complete</strong></td></tr><tr><td><strong>G9</strong></td><td><a href='Credentials_Staging.html' class='doc-link'>Staging Credentials</a></td><td>Institutional entry points for L1 audit and UAT testing.</td><td><strong>Complete</strong></td></tr><tr><td><strong>G10</strong></td><td><a href='GrowingCents_UAT_Confirmation_v1.0.html' class='doc-link'>UAT Confirmation Matrix</a></td><td>Mapping of 19 artifacts to institutional sign-off nodes.</td><td><strong>Complete</strong></td></tr></table></div><br />
-<hr><br />
-<br />
-<h2>2. Strategic Execution Portfolio (S1-S4)</h2><br />
-<br />
-<div class="table-wrapper"><table><tr><th>Group</th><th>Artifact Descriptor</th><th>Operational Intent</th><th>Status</th></tr></table></div><br />
-<div class="table-wrapper"><table><tr><th><strong>S1</strong></th><th><a href='GrowingCents_SRS_vs_UAT_v1.0.html' class='doc-link'>SRS vs UAT Comparison</a></th><th>Gap analysis between initial vision and final build.</th><th><strong>Complete</strong></th></tr><tr><td><strong>S2</strong></td><td><a href='GrowingCents_TestDataResetProcedure.html' class='doc-link'>Test Data Reset</a></td><td>Node cleansing protocol for iterative UAT cycles.</td><td><strong>Complete</strong></td></tr><tr><td><strong>S3</strong></td><td><a href='GrowingCents_UAT_ScopeRenegotiation_v1.0.html' class='doc-link'>UAT Scope Renegotiation</a></td><td>Technical justifications for out-of-scope logic flows.</td><td><strong>Complete</strong></td></tr><tr><td><strong>S4</strong></td><td><a href='WorkPlan_Growing_Cents_Updated.html' class='doc-link'>Project WorkPlan</a></td><td>Final timeline and deployment roadmap for L1 go-live.</td><td><strong>Complete</strong></td></tr></table></div><br />
-<hr><br />
-<br />
-<h2>3. Institutional Sign-off Nodes</h2><br />
-<br />
-The Growing Cents system has been audited for UI density, operational logic, and technical resilience. These artifacts serve as the official technical baseline for the institutional handover. <br />
-<br />
-<h3>3.1 Review Protocol</h3><br />
-1. <strong>Node Audit:</strong> Review each artifact for technical depth and logic accuracy.<br />
-2. <strong>Logic Validation:</strong> Cross-reference the <a href='GrowingCents_Assessment_Logic_Matrix.html' class='doc-link'>Logic Matrix</a> with system behavior.<br />
-3. <strong>Institutional Release:</strong> Sign-off on the <a href='GrowingCents_UAT_Confirmation_v1.0.html' class='doc-link'>UAT Confirmation</a> once verification is complete.<br />
-<br />
-<hr><br />
-<em>Growing Cents Strategic Resilience Command | Authorized for Institutional Release</em><br />
-
-        </main>
-        <footer>
-            &copy; 2026 Growing Cents Institutional Intelligence System | Authorized Release
-        </footer>
+<div class='glass-container'>
+    <div class='top-nav'>
+        <a href='../index.html' class='back-link'>← Dashboard</a>
+        <div class='brand-logo'>Growing Cents<span>Elite</span></div>
     </div>
+    <div class='content-area'>
+
+<h1>UAT Artifact Response Pack v1.0</h1>
+<p>This is the master index and technical baseline document for the Growing Cents Health &amp; Maturity Assessment Platform UAT. All artifacts listed below were prepared by Restorcom Consults (U) Ltd in response to Moses Aaku's Info Request of 15 March 2026.</p>
+
+<div class='callout callout-info'>
+  <strong>Platform:</strong> Growing Cents Health &amp; Maturity Assessment Tool (For Investment Clubs) &nbsp;|&nbsp;
+  <strong>Developer:</strong> Restorcom Consults (U) Ltd — Daniel Nuwandinda &nbsp;|&nbsp;
+  <strong>Client:</strong> Growing Cents Limited — Emmanuel Mvano &nbsp;|&nbsp;
+  <strong>SRS Signed:</strong> 9 Jul 2025 (Daniel) / 7 Jul 2025 (Emmanuel)
+</div>
+
+<h2>1. Requirements Source of Truth</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Responsible</th><th>Document</th><th>Status</th></tr>
+<tr><td>Excel Scorecard / Scoring Model (unlocked)</td><td>Emmanuel</td><td>—</td><td><span class='badge badge-red'>Pending Emmanuel — UAT EXIT CRITERION</span></td></tr>
+<tr><td>Requirements Discovery Document</td><td>Emmanuel</td><td>—</td><td><span class='badge badge-red'>Pending Emmanuel</span></td></tr>
+<tr><td>Weighted aggregation logic (statement → section → area → overall)</td><td>Daniel</td><td><a class='doc-link' href='GrowingCents_Assessment_Logic_Matrix.html'>Assessment Logic Matrix</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Maturity thresholds and rounding rules</td><td>Daniel</td><td><a class='doc-link' href='GrowingCents_Assessment_Logic_Matrix.html'>Assessment Logic Matrix — Section 1</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Architectural document + sequence diagrams</td><td>Daniel</td><td><a class='doc-link' href='GrowingCents_SequenceDiagrams.html'>Sequence Diagrams</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+</table></div>
+
+<h2>2. Assessment Logic</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Conditional assessment logic matrix (384 rules)</td><td><a class='doc-link' href='GrowingCents_Assessment_Logic_Matrix.html'>Assessment Logic Matrix — Section 4</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Response dependencies: show / hide / mandatory rules</td><td><a class='doc-link' href='GrowingCents_Assessment_Logic_Matrix.html'>Assessment Logic Matrix — Section 4</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Assessment workflow lifecycle: Draft → Completed → Grace → Locked</td><td><a class='doc-link' href='GrowingCents_Assessment_Logic_Matrix.html'>Assessment Logic Matrix — Section 5</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Assessment edit rules including post-submission window</td><td><a class='doc-link' href='GrowingCents_Assessment_Logic_Matrix.html'>Assessment Logic Matrix — Section 6</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+</table></div>
+
+<h2>3. Access Control</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Role manipulation rules: create, edit, deactivate</td><td><a class='doc-link' href='GrowingCents_RBAC_Model_v2.0.html'>RBAC Model v2.0 — Section 3</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>User manipulation rules</td><td><a class='doc-link' href='GrowingCents_RBAC_Architecture_v1.0.html'>RBAC Architecture — Layer 5</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Role + subscription interaction logic</td><td><a class='doc-link' href='GrowingCents_PaymentScope_Webhooks.html'>Payment Scope — Section 1</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>7-layer RBAC interaction model (Moses request)</td><td><a class='doc-link' href='GrowingCents_RBAC_Model_v2.0.html'>RBAC Model v2.0</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+</table></div>
+
+<h2>4. Subscription &amp; Payment Logic</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Subscription gating rules</td><td><a class='doc-link' href='GrowingCents_PaymentScope_Webhooks.html'>Payment Scope — Section 1</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Payment lifecycle states (initiated, pending, success, failed, reversed)</td><td><a class='doc-link' href='GrowingCents_PaymentScope_Webhooks.html'>Payment Scope — Section 3</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Mock payment interaction scope</td><td><a class='doc-link' href='GrowingCents_PaymentScope_Webhooks.html'>Payment Scope — Section 4</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Payment webhook samples (Pesapal)</td><td><a class='doc-link' href='GrowingCents_PaymentScope_Webhooks.html'>Payment Scope — Section 5</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Billing rules: per assessment, per club</td><td><a class='doc-link' href='GrowingCents_PaymentScope_Webhooks.html'>Payment Scope — Section 2</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+</table></div>
+
+<h2>5. Reporting Requirements</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Responsible</th><th>Status</th></tr>
+<tr><td>Report format specification</td><td>Emmanuel</td><td><span class='badge badge-red'>Pending Emmanuel</span></td></tr>
+<tr><td>Excel dashboard reference design</td><td>Emmanuel</td><td><span class='badge badge-red'>Pending Emmanuel</span></td></tr>
+<tr><td>Export rules: PDF, Excel, Email</td><td>Daniel</td><td><span class='badge badge-amber'>PDF ✅ | Email ✅ | Excel XLSX in progress</span></td></tr>
+</table></div>
+
+<h2>6. Multi-Club Logic</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Multi-club membership rules</td><td><a class='doc-link' href='GrowingCents_MultiClub_CrossSell_Protocols.html'>Multi-Club Protocols — Section 1</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Club selection logic after login</td><td><a class='doc-link' href='GrowingCents_MultiClub_CrossSell_Protocols.html'>Multi-Club Protocols — Section 2</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Subscription isolation across clubs</td><td><a class='doc-link' href='GrowingCents_MultiClub_CrossSell_Protocols.html'>Multi-Club Protocols — Section 4</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+</table></div>
+
+<h2>7. API &amp; Integration</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>API contract documentation + request/response payloads</td><td><a class='doc-link' href='GrowingCents_Postman_FullPayloads_v2.0.html'>Postman Collection (Full Payloads)</a></td><td><span class='badge badge-green'>Provided — 112 routes</span></td></tr>
+<tr><td>Error code catalogue</td><td><a class='doc-link' href='GrowingCents_ErrorCodeCatalogue.html'>Error Code Catalogue</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>API authentication mechanism</td><td><a class='doc-link' href='GrowingCents_RBAC_Architecture_v1.0.html'>RBAC Architecture — Layer 3</a></td><td><span class='badge badge-green'>Session-based + 2FA/OTP documented</span></td></tr>
+</table></div>
+
+<h2>8. Environment Access</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Frontend URL: https://assessment.growing-cents.com</td><td>—</td><td><span class='badge badge-amber'>SSL fix in progress</span></td></tr>
+<tr><td>Role-based test credentials</td><td><a class='doc-link' href='Credentials_Staging.html'>Credentials — Staging</a></td><td><span class='badge badge-amber'>Staging setup in progress</span></td></tr>
+<tr><td>OTP / email testing setup (Mailtrap)</td><td><a class='doc-link' href='Credentials_Staging.html'>Credentials — Section 4</a></td><td><span class='badge badge-amber'>Pending Mailtrap configuration</span></td></tr>
+</table></div>
+
+<h2>9. Source Code</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Git repository — uat/staging branch</td><td>—</td><td><span class='badge badge-amber'>Branch to be created — Moses to be invited</span></td></tr>
+<tr><td>Branching strategy</td><td><a class='doc-link' href='GrowingCents_GitBranchingStrategy_v1.0.html'>Git Branching Strategy</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+</table></div>
+
+<h2>10. Database &amp; Data</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Database schema / ERD</td><td><a class='doc-link' href='GrowingCents_ERD_DataDictionary_v1.0.html'>ERD + Data Dictionary</a></td><td><span class='badge badge-green'>Provided — 9 tables</span></td></tr>
+<tr><td>Data dictionary</td><td><a class='doc-link' href='GrowingCents_ERD_DataDictionary_v1.0.html'>ERD + Data Dictionary</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Seed test data</td><td><a class='doc-link' href='GrowingCents_TestDataResetProcedure.html'>Test Data Reset — Section 5</a></td><td><span class='badge badge-amber'>UATSeeder being prepared</span></td></tr>
+<tr><td>Test data reset procedure</td><td><a class='doc-link' href='GrowingCents_TestDataResetProcedure.html'>Test Data Reset Procedure</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+</table></div>
+
+<h2>11. Known Issues</h2>
+<div class='table-wrapper'><table>
+<tr><th>Item</th><th>Document</th><th>Status</th></tr>
+<tr><td>Known issues list (13 items — 4 P0, 9 P1)</td><td><a class='doc-link' href='GrowingCents_Operational_KnownIssues.html'>Operational Known Issues</a></td><td><span class='badge badge-green'>Provided</span></td></tr>
+<tr><td>Logging / monitoring access</td><td>—</td><td><span class='badge badge-amber'>UptimeRobot setup in progress</span></td></tr>
+</table></div>
+
+    </div>
+    <footer>Growing Cents Limited &nbsp;|&nbsp; Restorcom Consults &nbsp;|&nbsp; UAT Artifact Portal &nbsp;|&nbsp; 19 March 2026</footer>
+</div>
 </body>
 </html>
